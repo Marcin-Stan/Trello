@@ -7,6 +7,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class HelloWorld {
     @RequestMapping("/1")
     public String index(){
-        return "Karolak aktor wybitny";
+        return "Karolak aktor wybitny-test";
     }
 }
