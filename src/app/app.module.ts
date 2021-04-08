@@ -5,10 +5,11 @@ import {HttpClientModule} from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { TestComponent } from './test/test.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
-    TestComponent
+    TestComponent,
   ],
   imports: [
     BrowserModule,
