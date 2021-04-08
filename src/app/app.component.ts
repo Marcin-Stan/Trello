@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
+import { User } from './user';
+
 
 @Component({
   selector: 'app-root',
@@ -8,12 +10,18 @@ import {HttpClient} from '@angular/common/http';
 })
 export class AppComponent {
   title = 'trello-frontend';
-  readonly ROOT_URL = 'https://jsonplaceholder.typicode.com';
-  posts:any;
+  readonly ROOT_URL = 'https://pl-paw-2021.herokuapp.com/users';
+  Users:User[];
+
   constructor(private http:HttpClient){}
 
-  getPosts(){
-    // @ts-ignore
-    this.posts=this.http.get(this.ROOT_URL+'/posts');
+  getUsers(){
+    return this.http.get<User[]>(this.ROOT_URL);
   }
+  fillUsers(){
+    this.getUsers().subscribe(data =>{
+      this.Users = data;
+    });
+  }
+
 }
