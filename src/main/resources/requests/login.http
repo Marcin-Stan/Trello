@@ -1,0 +1,11 @@
+POST http://localhost:8080/users/logout
+Content-Type: application/json
+
+{
+  "id": 4,
+  "email": "test4",
+  "password": "test4"
+}
+
+###
+
