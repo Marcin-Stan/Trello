@@ -10,7 +10,7 @@ import java.util.List;
 
 @RestController
 public class UserController {
-
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     @Autowired
     UserRepository userRepository;
 
