@@ -41,7 +41,7 @@ public class UserController {
                 return user.getId();
             }
         }
-        return -1L;
+        return (long) -1;
     }
 
     @PostMapping("/users/logout")
