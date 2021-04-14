@@ -1,22 +1,4 @@
 <h1>This is {{title}} app core</h1>
-<h2>Below is test of response from test API</h2>
-<a>Press button to proceed...</a>
-<button (click)="fillUsers()">Get Users</button>
 
-<table class="table table-bordered table-striped">
-  <thead class="thead-dark">
-  <tr>
-    <th scope="col">#</th>
-    <th scope="col">email</th>
-    <th scope="col">password</th>
-  </tr>
-  </thead>
-  <tbody>
-  <tr *ngFor="let user of Users">
-    <td>{{ user.id }}</td>
-    <td>{{ user.email }}</td>
-    <td><a href="mailto:{{ user.email }}">{{ user.password }}</a></td>
-  </tr>
-  </tbody>
-</table>
+<app-login-form></app-login-form>
 

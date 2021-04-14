@@ -4,12 +4,14 @@ import {HttpClientModule} from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { TestComponent } from './test/test.component';
+import {LoginFormComponent} from './login-form/login-form.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     TestComponent,
+    LoginFormComponent,
   ],
   imports: [
     BrowserModule,
