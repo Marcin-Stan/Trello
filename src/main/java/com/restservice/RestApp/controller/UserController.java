@@ -29,7 +29,7 @@ public class UserController {
     }
 
     @PostMapping("/users/login")
-    public String loginUser(@Valid @RequestBody User user) {
+    public Long loginUser(@Valid @RequestBody User user) {
         List<User> users = userRepository.findAll();
         User usertest = userRepository.findByEmail(user.getEmail());
         String password = user.getPassword();
@@ -38,10 +38,10 @@ public class UserController {
             if (other.getPassword().equals(password) && other.getEmail().equals(email)) {
                 usertest.setLoggedIn(true);
                 userRepository.save(usertest);
-                return usertest.getId().toString();
+                return usertest.getId();
             }
         }
-        return "-1";
+        return -1L;
     }
 
     @PostMapping("/users/logout")
