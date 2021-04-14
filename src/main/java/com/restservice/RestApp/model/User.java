@@ -1,9 +1,8 @@
 package com.restservice.RestApp.model;
 
 import javax.persistence.*;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
+
 import lombok.Data;
 import org.hibernate.validator.constraints.UniqueElements;
 
@@ -20,20 +19,26 @@ public class User {
     @Column(name = "id")
     private Long id;
 
-
     @Column(name = "email")
+    @Email
+    @NotEmpty
     private String email;
 
     @Column(name = "password")
+    @NotEmpty
     private String password;
 
+    @NotNull
     @Column(name = "logged_in")
     private boolean loggedIn;
 
+    @Column(name = "display_name")
+    private String displayName;
+
     public User() {
     }
-    public User(@NotBlank String email,
-                @NotBlank String password) {
+    public User( @NotEmpty String email,
+                 @NotEmpty String password) {
         this.email = email;
         this.password = password;
         this.loggedIn = false;

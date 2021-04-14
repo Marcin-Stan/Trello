@@ -1,11 +1,9 @@
-POST http://localhost:8080/users/logout
+POST http://localhost:8080/users/login
 Content-Type: application/json
 
 {
-  "id": 4,
-  "email": "test4",
-  "password": "test4"
+  "email": "test99@gmail.com",
+  "password": "test3"
 }
-
 ###
 
