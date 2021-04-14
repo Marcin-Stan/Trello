@@ -9,10 +9,6 @@ import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
-@RestController
-@CrossOrigin(origins = "*", allowedHeaders = "*")
-public class UserController {
-
 
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 public class UserController {
