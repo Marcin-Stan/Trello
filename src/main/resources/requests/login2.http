@@ -1,7 +1,8 @@
-POST https://pl-paw-2021.herokuapp.com/users/login
+POST https://pl-paw-2021.herokuapp.com/login
 Content-Type: application/json
 
 {
-  "email": "test4@gmail.com",
-  "password": "test44"
+  "email": "test99@gmail.com",
+  "password": "test3"
 }
+###
