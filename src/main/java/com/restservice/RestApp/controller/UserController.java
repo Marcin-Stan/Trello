@@ -38,7 +38,7 @@ public class UserController {
             if (other.getPassword().equals(password) && other.getEmail().equals(email)) {
                 usertest.setLoggedIn(true);
                 userRepository.save(usertest);
-                return user.getId();
+                return usertest.getId();
             }
         }
         return (long) -1;
@@ -61,7 +61,6 @@ public class UserController {
 
         return Status.FAILURE;
     }
-
 
     @DeleteMapping("/users/all")
     public Status deleteUsers() {
