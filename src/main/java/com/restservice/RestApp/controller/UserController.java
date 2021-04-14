@@ -13,6 +13,10 @@ import java.util.Optional;
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 public class UserController {
 
+
+@CrossOrigin(origins = "*", allowedHeaders = "*")
+public class UserController {
+    
     @Autowired
     UserRepository userRepository;
 
