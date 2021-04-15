@@ -1,4 +1,4 @@
-import { Component, EventEmitter } from "@angular/core";
+import { Component, EventEmitter, Output } from "@angular/core";
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { User } from '../user';
 
@@ -8,6 +8,7 @@ import { User } from '../user';
   styleUrls: ['./login-form.component.css']
 })
 export class LoginFormComponent {
+
   email: string = "";
   password: string = "";
   UserId:number;
@@ -15,11 +16,15 @@ export class LoginFormComponent {
   readonly ROOT_URL = 'https://pl-paw-2021.herokuapp.com/users/login';
   postData={};
   LogedIn:boolean;
+  loginError:string;
+  user:User;
+
+  @Output() messageEvent = new EventEmitter<User>();
+
+
   constructor(private http:HttpClient){
     this.LogedIn=false;
-  }
-  httpOptions = {
-    headers: new HttpHeaders({'Content-Type': 'application/json'})
+    this.user=new User();
   }
 
   onSubmit(fEmail:string, fPassword:string) {
@@ -28,13 +33,23 @@ export class LoginFormComponent {
       password:fPassword
     }
 
-    this.http.post<string>(this.ROOT_URL,this.postData).toPromise().then(data => {
-      this.result=+data;
-      console.log(this.result);
+    this.http.post<number>(this.ROOT_URL,this.postData).toPromise().then(data => {
+      this.result=data;
       if(this.result>0){
         this.email=fEmail;
         this.LogedIn=true;
-        this.UserId=this.result;
+        this.loginError="";
+
+        this.user.id=this.result;
+        this.user.email=this.email;
+        this.user.password=fPassword;
+        this.user.isLogedIn=true;
+
+        this.messageEvent.emit(this.user);
+
+
+      }else{
+        this.loginError="email lub hasło nieprawidłowe!"
       }
     });
 

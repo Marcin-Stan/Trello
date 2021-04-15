@@ -5,6 +5,7 @@ import {HttpClientModule} from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { TestComponent } from './test/test.component';
 import {LoginFormComponent} from './login-form/login-form.component';
+import { User } from './user';
 
 
 @NgModule({
@@ -15,7 +16,7 @@ import {LoginFormComponent} from './login-form/login-form.component';
   ],
   imports: [
     BrowserModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

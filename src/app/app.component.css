@@ -1,1 +1,28 @@
+header {
+  background-color: #666;
+  height:75px;
+  padding: 30px;
+  text-align: center;
+  color: white;
+}
+nav{
+  float: left;
+  background-color: #9e9e9e;
+  height:80vh;
+  width:10%;
+}
+section{
+  padding:10px;
+  float:left;
+  height:80vh;
+  background-color: deepskyblue;
+  width:75%;
+}
 
+aside{
+  padding:10px;
+  text-align: center;
+  float: left;
+  background-color: dodgerblue;
+  width:15%;
+}

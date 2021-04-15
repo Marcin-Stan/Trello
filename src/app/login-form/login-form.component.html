@@ -1,22 +1,30 @@
 
 
-
+<div style="background-color: dodgerblue">
 <div *ngIf="!LogedIn">
-  <h2>Login </h2>
-  <div>
-    <label for="email">E-mail</label>
-    <input #email id="email" type="text" name="email" >
-  </div>
-  <div>
-    <label for="password">Password</label>
-    <input #password id="password" type="text" name="password">
-  </div>
-  <div>
+  <h2>Zaloguj się </h2>
+  <table>
+    <tr>
+      <td>
+        <label>E-mail</label>
+      </td>
+      <td>
+        <input #email id="email" type="text" name="email" >
+      </td>
+    </tr>
+    <tr>
+    <td>
+      <label>Hasło</label>
+    </td>
+    <td>
+      <input #password id="password" type="text" name="password">
+    </td>
+    </tr>
+  </table>
+  <p style="color:red">{{loginError}}</p>
     <button (click)="onSubmit(email.value,password.value)">Login</button>
-  </div>
 </div>
 <div *ngIf="LogedIn">
-  <h2>You are logged in as {{email}}, ID:{{UserId}}</h2>
+  <a>You are logged in as <b>{{email}}</b></a>
 </div>
-
-
+</div>
