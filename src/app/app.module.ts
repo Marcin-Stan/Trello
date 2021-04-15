@@ -17,9 +17,11 @@ import { User } from './user';
   imports: [
     BrowserModule,
     HttpClientModule,
+
+  ],
+  providers: [
     User
   ],
-  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
