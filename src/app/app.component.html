@@ -1,4 +1,15 @@
-<h1>This is {{title}} app core</h1>
+<header>
+<h1>Misja: <b style="color:dodgerblue">{{title}}</b></h1>
+</header>
+<nav>
+  <h1 style="text-align: center">Menu</h1>
+</nav>
+<section>
+<div *ngIf="user.isLogedIn">
+  <h2>Witaj, {{user.email}}</h2>
+</div>
 
-<app-login-form></app-login-form>
-
+</section>
+<aside>
+<app-login-form (messageEvent)="receiveMessage($event)"></app-login-form>
+</aside>

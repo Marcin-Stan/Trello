@@ -9,22 +9,14 @@ import { User } from './user';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'trello-frontend';
-  readonly ROOT_URL = 'https://pl-paw-2021.herokuapp.com/users';
-  Users:User[];
+  user:User;
+  title = 'Trello';
 
-  constructor(private http:HttpClient){}
-
-  getUsers(){
-    return this.http.get<User[]>(this.ROOT_URL);
-  }
-  fillUsers(){
-    this.getUsers().subscribe(data =>{
-      this.Users = data;
-    });
+  constructor(){
+    this.user=new User();
   }
 
-
-
-
+  receiveMessage($event){
+    this.user=$event;
+  }
 }
