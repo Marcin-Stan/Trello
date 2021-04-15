@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Output } from "@angular/core";
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import { User } from '../user';
 
 @Component({
   selector: 'app-login-form',
@@ -17,14 +16,12 @@ export class LoginFormComponent {
   postData={};
   LogedIn:boolean;
   loginError:string;
-  user:User;
 
-  @Output() messageEvent = new EventEmitter<User>();
+  @Output() messageEvent = new EventEmitter<string>();
 
 
   constructor(private http:HttpClient){
     this.LogedIn=false;
-    this.user=new User();
   }
 
   onSubmit(fEmail:string, fPassword:string) {
@@ -40,12 +37,7 @@ export class LoginFormComponent {
         this.LogedIn=true;
         this.loginError="";
 
-        this.user.id=this.result;
-        this.user.email=this.email;
-        this.user.password=fPassword;
-        this.user.isLogedIn=true;
-
-        this.messageEvent.emit(this.user);
+        this.messageEvent.emit(this.email);
 
 
       }else{
