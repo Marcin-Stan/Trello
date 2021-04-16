@@ -25,3 +25,9 @@ Sposób tworzenia dokumentacji - GitHub Wiki
 Narzędzia do śledzenia postępów projektu - GitHub Projects ze wsparciem platformy ZenHub rozszerzającej możliwości
 
 Wybrane środowisko pracy - JetBrains IntelliJ
+
+# Linki
+
+[Tablica kanbanowa ZenHub](https://app.zenhub.com/workspaces/trello-charlie-605f6344dabaf4001369e751/board?repos=350444245)
+
+
