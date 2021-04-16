@@ -1,0 +1,9 @@
+POST http://localhost:8080/boards/checkOwner
+Content-Type: application/json
+
+{
+  "id": 32,
+  "owner": {
+    "id": 33
+  }
+}

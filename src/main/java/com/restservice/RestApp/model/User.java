@@ -3,9 +3,11 @@ package com.restservice.RestApp.model;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import org.hibernate.validator.constraints.UniqueElements;
 
+import java.util.List;
 import java.util.Objects;
 
 
@@ -34,6 +36,16 @@ public class User {
 
     @Column(name = "display_name")
     private String displayName;
+
+    @OneToMany(mappedBy = "owner")
+    @JsonIgnore
+    private List<Board> boardList;
+
+    @OneToMany(mappedBy = "user")
+    @JsonIgnore
+    private List<BoardUser> boardUsersList;
+
+
 
     public User() {
     }
