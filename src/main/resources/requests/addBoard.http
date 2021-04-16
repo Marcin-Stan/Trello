@@ -1,0 +1,9 @@
+POST http://localhost:8080/boards/add
+Content-Type: application/json
+
+{
+  "name": "Testereferererererere",
+  "owner": {
+    "id": 2
+  }
+}

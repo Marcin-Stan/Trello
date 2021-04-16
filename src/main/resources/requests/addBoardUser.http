@@ -1,0 +1,12 @@
+POST http://localhost:8080/boardsUser/add
+Content-Type: application/json
+
+{
+  "id": 0,
+  "board": {
+    "id": 32
+  },
+  "user": {
+    "id": 99
+  }
+}
