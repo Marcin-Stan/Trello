@@ -1,0 +1,38 @@
+
+
+<div style="background-color: dodgerblue">
+<div *ngIf="!LogedIn">
+  <h2>Zarejestruj się </h2>
+  <table>
+    <tr>
+      <td>
+        <label>E-mail</label>
+      </td>
+      <td>
+        <input #email id="email" type="text" name="email" >
+      </td>
+      <td>
+        <label>Hasło</label>
+      </td>
+      <td>
+        <input #password id="password" type="password" name="password">
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <label>Wyświetlana nazwa</label>
+      </td>
+      <td>
+        <input #displayName id="displayName" type="text" name="displayName" >
+      </td>
+
+    </tr>
+  </table>
+  <p style="color:red">{{loginError}}</p>
+  <p style="color:green">{{postMessage}} </p>
+    <button  (click)="onSubmit(email.value,password.value, displayName.value)">Zarejestruj</button>
+</div>
+<div *ngIf="LogedIn">
+  <a>You are logged in as <b>{{email}}</b></a>
+</div>
+</div>
