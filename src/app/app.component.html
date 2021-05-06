@@ -5,9 +5,17 @@
   <h1 style="text-align: center">Menu</h1>
 </nav>
 <section>
+  <div *ngIf="!LogedIn">
+    <app-default-main></app-default-main>
+  </div>
+
 <div *ngIf="LogedIn">
   <h2>Witaj, {{email}}</h2>
+
 </div>
+  <div>
+
+  </div>
 
 </section>
 <aside>
