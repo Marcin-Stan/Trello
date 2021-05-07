@@ -14,7 +14,7 @@ export class RegisterFormComponent {
   result:string;
   readonly ROOT_URL = 'https://pl-paw-2021.herokuapp.com/users/register';
   postData={};
-  LogedIn:boolean;
+  registered:boolean;
   loginError:string;
   postMessage:string;
 
@@ -22,7 +22,7 @@ export class RegisterFormComponent {
 
 
   constructor(private http:HttpClient){
-    this.LogedIn=false;
+    this.registered=false;
   }
 
   onSubmit(fEmail:string, fPassword:string, fDisplayName) {
@@ -36,10 +36,12 @@ export class RegisterFormComponent {
       this.result=data;
       console.log(data);
       if(this.result=="SUCCESS"){
+        this.registered=true;
         this.loginError="";
         this.postMessage="Dodano użytkownika "
         this.postMessage+=fDisplayName;
       }else{
+        this.registered=false;
         this.loginError="Błędne dane"
         this.postMessage=""
       }

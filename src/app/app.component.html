@@ -4,20 +4,17 @@
 <nav>
   <h1 style="text-align: center">Menu</h1>
 </nav>
+
 <section>
   <div *ngIf="!LogedIn">
     <app-default-main></app-default-main>
   </div>
-
 <div *ngIf="LogedIn">
   <h2>Witaj, {{user.email}}</h2>
-
+<app-show-tables [user]=this.user></app-show-tables>
 </div>
-  <div>
-
-  </div>
-
 </section>
+
 <aside>
 <app-login-form (messageEvent)="receiveMessage($event)"></app-login-form>
 </aside>

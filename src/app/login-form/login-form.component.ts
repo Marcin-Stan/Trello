@@ -36,6 +36,8 @@ user:IUser={email:"",password:"",id:0};
       this.result=data;
       if(this.result>0){
         this.user.email=fEmail;
+        this.user.password=fPassword;
+        this.user.id=this.result;
         this.email=fEmail;
         this.LogedIn=true;
         this.loginError="";
