@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Output } from "@angular/core";
 import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {IUser} from "../user";
 
 @Component({
   selector: 'app-login-form',
@@ -7,7 +8,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
   styleUrls: ['./login-form.component.css']
 })
 export class LoginFormComponent {
-
+user:IUser={email:"",password:"",id:0};
   email: string = "";
   password: string = "";
   UserId:number;
@@ -17,7 +18,7 @@ export class LoginFormComponent {
   LogedIn:boolean;
   loginError:string;
 
-  @Output() messageEvent = new EventEmitter<string>();
+  @Output() messageEvent = new EventEmitter<IUser>();
 
 
   constructor(private http:HttpClient){
@@ -25,6 +26,7 @@ export class LoginFormComponent {
   }
 
   onSubmit(fEmail:string, fPassword:string) {
+
     this.postData={
       email:fEmail,
       password:fPassword
@@ -33,11 +35,14 @@ export class LoginFormComponent {
     this.http.post<number>(this.ROOT_URL,this.postData).toPromise().then(data => {
       this.result=data;
       if(this.result>0){
+        this.user.email=fEmail;
+        this.user.password=fPassword;
+        this.user.id=this.result;
         this.email=fEmail;
         this.LogedIn=true;
         this.loginError="";
 
-        this.messageEvent.emit(this.email);
+        this.messageEvent.emit(this.user);
 
 
       }else{

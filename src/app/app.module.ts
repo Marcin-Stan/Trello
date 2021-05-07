@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import {LoginFormComponent} from './login-form/login-form.component';
 import {RegisterFormComponent} from './register-form/register-form.component';
 import { DefaultMainComponent } from './default-main/default-main.component';
+import { ShowTablesComponent } from './show-tables/show-tables.component';
 
 
 
@@ -16,6 +17,7 @@ import { DefaultMainComponent } from './default-main/default-main.component';
     LoginFormComponent,
     RegisterFormComponent,
     DefaultMainComponent,
+    ShowTablesComponent,
   ],
   imports: [
     BrowserModule,

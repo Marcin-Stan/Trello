@@ -25,6 +25,6 @@
     <button (click)="onSubmit(email.value,password.value)">Login</button>
 </div>
 <div *ngIf="LogedIn">
-  <a>Jesteś zalogowany <b>{{email}}</b></a>
+  <a>Jesteś zalogowany jako <b>{{user.email}}</b></a>
 </div>
 </div>

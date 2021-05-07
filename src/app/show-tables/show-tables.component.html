@@ -1,0 +1,6 @@
+<h4>Oto Twoje tablice</h4>
+<div *ngFor="let board of listOfBoards">
+  <a>Nazwa tablicy: <strong>{{board.board.name}}</strong></a><br>
+  <a>Właściciel: {{board.board.owner.email}}</a><br><br>
+</div>
+

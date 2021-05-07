@@ -1,6 +1,12 @@
 app-register-form{
-  float:left;
+  float:right;
 }
 div{
   float:left;
+}
+app-register-form{
+  width:60%;
+}
+.info{
+  width:40%;
 }
