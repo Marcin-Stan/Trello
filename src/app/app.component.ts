@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
+import {IUser} from "./user";
 
 
 
@@ -9,6 +10,7 @@ import {HttpClient} from '@angular/common/http';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+user:IUser;
   email:string;
   title = 'Trello';
   LogedIn:boolean;
@@ -18,7 +20,7 @@ export class AppComponent {
   }
 
   receiveMessage($event){
-    this.email=$event;
+    this.user=$event;
     this.LogedIn=true;
   }
 }
