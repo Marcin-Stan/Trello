@@ -3,15 +3,16 @@ package com.restservice.RestApp.model;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
-import org.hibernate.validator.constraints.UniqueElements;
 
+import java.util.List;
 import java.util.Objects;
 
 
 @Entity
 @Data
-@Table(name = "user")
+@Table(name = "users")
 public class User {
 
     @Id
@@ -19,7 +20,7 @@ public class User {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "email")
+    @Column(name = "username")
     @Email
     @NotEmpty
     private String email;
@@ -29,11 +30,19 @@ public class User {
     private String password;
 
     @NotNull
-    @Column(name = "logged_in")
-    private boolean loggedIn;
+    @Column(name = "enabled")
+    private boolean enabled;
 
     @Column(name = "display_name")
     private String displayName;
+
+    @OneToMany(mappedBy = "owner")
+    @JsonIgnore
+    private List<Board> boardList;
+
+    @OneToMany(mappedBy = "user")
+    @JsonIgnore
+    private List<BoardUser> boardUsersList;
 
     public User() {
     }
@@ -41,7 +50,7 @@ public class User {
                  @NotEmpty String password) {
         this.email = email;
         this.password = password;
-        this.loggedIn = false;
+        this.enabled = false;
     }
 
 
@@ -57,7 +66,7 @@ public class User {
     @Override
     public int hashCode() {
         return Objects.hash(id,email, password,
-                loggedIn);
+                enabled);
     }
 
     @Override
@@ -66,7 +75,7 @@ public class User {
                 "id=" + id +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
-                ", loggedIn=" + loggedIn +
+                ", loggedIn=" + enabled +
                 '}';
     }
 

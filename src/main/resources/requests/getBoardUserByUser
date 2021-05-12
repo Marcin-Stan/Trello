@@ -1,0 +1,7 @@
+POST https://pl-paw-2021.herokuapp.com/boardsUser/getByUser
+Content-Type: application/json
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0QGdtYWlsLmNvbSIsImV4cCI6MTYyMDg1OTA2NX0.xD248W1l4XAsOBmy1cjDKrC9cCd_1Ny4Kw1a7Ctdfqg
+
+{
+  "id": 1
+}
