@@ -1,9 +1,9 @@
-POST http://localhost:8080/boards/checkOwner
+POST https://pl-paw-2021.herokuapp.com/boards/checkOwner
 Content-Type: application/json
 
 {
   "id": 32,
   "owner": {
-    "id": 33
+    "id": 2
   }
 }
