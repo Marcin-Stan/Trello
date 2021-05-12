@@ -36,13 +36,15 @@ public class UserController {
         String email = user.getEmail();
         for (User other : users) {
             if (other.getPassword().equals(password) && other.getEmail().equals(email)) {
-                usertest.setLoggedIn(true);
+                usertest.setEnabled(true);
                 userRepository.save(usertest);
                 return usertest.getId();
             }
         }
         return -1L;
     }
+
+
 
     @PostMapping("/users/logout")
     public Status logUserOut(@RequestBody User user) {
@@ -52,7 +54,7 @@ public class UserController {
         if(!user1.isEmpty()){
             for (User other : users) {
                 if (other.equals(user1.get())) {
-                    user.setLoggedIn(false);
+                    user.setEnabled(false);
                     userRepository.save(user1.get());
                     return Status.SUCCESS;
                 }

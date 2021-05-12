@@ -1,4 +1,4 @@
-POST http://localhost:8080/boardsUser/getByUser
+POST https://pl-paw-2021.herokuapp.com/boardsUser/getByUser
 Content-Type: application/json
 
 {

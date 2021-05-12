@@ -2,7 +2,7 @@ POST http://localhost:8080/boards/add
 Content-Type: application/json
 
 {
-  "name": "Testereferererererere",
+  "name": "TestowaNazwaBoardu",
   "owner": {
     "id": 2
   }
