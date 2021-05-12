@@ -4,6 +4,7 @@ import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.service.ApiKey;
 import springfox.documentation.service.AuthorizationScope;
@@ -21,6 +22,7 @@ import static java.util.Collections.singletonList;
 @Configuration
 @EnableSwagger2
 @EnableCaching
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class Config {
 
     @Bean
