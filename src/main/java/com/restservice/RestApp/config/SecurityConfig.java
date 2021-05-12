@@ -51,6 +51,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/v2/api-docs").permitAll()
                 .antMatchers("/webjars/**").permitAll()
                 .antMatchers("/swagger-resources/**").permitAll()
+                .antMatchers("/login").permitAll()
                 .anyRequest().authenticated()//wymagana jest autoryzacja do zasobów
                 .and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
@@ -60,9 +61,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .exceptionHandling()
                 .authenticationEntryPoint(new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED))
                 .and()
-                .headers()
+                .headers().frameOptions().disable()
                 .and()
-                .cors();
+                .cors()
+                .and()
+                .httpBasic();
     }
 
     public JsonObjectAuthenticationFilter authenticationFilter() throws Exception {
