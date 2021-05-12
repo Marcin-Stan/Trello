@@ -62,7 +62,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .headers().frameOptions().disable()
                 .and()
-                .cors();
+                .cors()
+                .and()
+                .headers()
+                .and()
+                .authorizeRequests();
     }
 
     public JsonObjectAuthenticationFilter authenticationFilter() throws Exception {
