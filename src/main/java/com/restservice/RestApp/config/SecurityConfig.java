@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import javax.sql.DataSource;
 
 @Configuration
-@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final DataSource dataSource;
@@ -61,7 +60,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .exceptionHandling()
                 .authenticationEntryPoint(new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED))
                 .and()
-                .headers().frameOptions().disable();
+                .headers().frameOptions().disable()
+                .and()
+                .cors();
     }
 
     public JsonObjectAuthenticationFilter authenticationFilter() throws Exception {

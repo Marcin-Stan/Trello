@@ -16,7 +16,6 @@ import java.io.IOException;
 import java.util.Date;
 
 @Component
-@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class RestAuthenticationSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
 
     private final long expirationTime;
