@@ -1,12 +1,13 @@
 POST http://localhost:8080/boardsUser/add
 Content-Type: application/json
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0QGdtYWlsLmNvbSIsImV4cCI6MTYyMDg0MTI0MX0.a6HJ3n6PMzBaLTb_GvklAazpYIB0X5l7P0KadtizcoQ
 
 {
   "id": 0,
   "board": {
-    "id": 32
+    "id": 1
   },
   "user": {
-    "id": 99
+    "id": 1
   }
 }
