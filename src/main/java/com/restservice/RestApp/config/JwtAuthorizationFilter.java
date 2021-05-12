@@ -16,7 +16,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class JwtAuthorizationFilter extends BasicAuthenticationFilter {
     private static final String TOKEN_HEADER = "Authorization";
     private static final String TOKEN_PREFIX = "Bearer ";

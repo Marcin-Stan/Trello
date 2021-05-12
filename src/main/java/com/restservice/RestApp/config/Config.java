@@ -22,7 +22,6 @@ import static java.util.Collections.singletonList;
 @Configuration
 @EnableSwagger2
 @EnableCaching
-@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class Config {
 
     @Bean
