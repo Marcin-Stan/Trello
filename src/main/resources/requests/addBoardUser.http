@@ -1,6 +1,6 @@
 POST http://localhost:8080/boardsUser/add
 Content-Type: application/json
-Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0QGdtYWlsLmNvbSIsImV4cCI6MTYyMDg0MTI0MX0.a6HJ3n6PMzBaLTb_GvklAazpYIB0X5l7P0KadtizcoQ
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0QGdtYWlsLmNvbSIsImV4cCI6MTYyMDg1ODk4OH0.ZvDve39lIeUj4g1hGzeHmBtQemK_i8zSnKRe2DhyqwoQ
 
 {
   "id": 0,
