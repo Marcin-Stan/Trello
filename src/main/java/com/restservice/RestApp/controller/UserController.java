@@ -16,6 +16,7 @@ public class UserController {
     @Autowired
     UserRepository userRepository;
 
+    /*
     @PostMapping("/users/register")
     public Status registerUser(@Valid @RequestBody User newUser) {
         List<User> users = userRepository.findAll();
@@ -27,6 +28,8 @@ public class UserController {
         userRepository.save(newUser);
         return Status.SUCCESS;
     }
+
+     */
 
     @PostMapping("/users/login")
     public Long loginUser(@Valid @RequestBody User user) {
