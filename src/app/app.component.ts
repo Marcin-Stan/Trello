@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {IUser} from "./user";
+import {IUserWithToken} from "./user-with-token";
 
 
 
@@ -10,8 +11,7 @@ import {IUser} from "./user";
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-user:IUser;
-  email:string;
+  userWithToken:IUserWithToken;
   title = 'Trello';
   LogedIn:boolean;
 
@@ -20,7 +20,7 @@ user:IUser;
   }
 
   receiveMessage($event){
-    this.user=$event;
+    this.userWithToken=$event;
     this.LogedIn=true;
   }
 }

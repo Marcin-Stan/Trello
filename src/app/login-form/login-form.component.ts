@@ -2,6 +2,7 @@ import { Component, EventEmitter, Output } from "@angular/core";
 import {HttpClient, HttpHeaders, HttpResponse} from '@angular/common/http';
 import {IUser} from "../user";
 import {map} from "rxjs/operators";
+import {IUserWithToken} from "../user-with-token";
 
 @Component({
   selector: 'app-login-form',
@@ -9,18 +10,22 @@ import {map} from "rxjs/operators";
   styleUrls: ['./login-form.component.css']
 })
 export class LoginFormComponent {
-user:IUser={email:"",password:"",id:0};
+user:IUser={email:"",password:"",id:0,displayName:""};
+  userWithToken:IUserWithToken = {user: null, token: null};
   email: string = "";
   password: string = "";
   UserId:number;
   result:number;
   readonly ROOT_URL = 'https://pl-paw-2021.herokuapp.com/login';
+  readonly USER_DATA_URL= 'https://pl-paw-2021.herokuapp.com/users';
   postData={};
   LogedIn:boolean;
   loginError:string;
+  authorization:string;
 
 
-  @Output() messageEvent = new EventEmitter<IUser>();
+
+  @Output() messageEvent = new EventEmitter<IUserWithToken>();
 
 
   constructor(private http:HttpClient){
@@ -36,29 +41,46 @@ user:IUser={email:"",password:"",id:0};
       username:fEmail,
       password:fPassword
     }
-    const httpOptions = {
-      headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
-      observe: 'response' as 'response'
-    };
-    this.http.post(this.ROOT_URL,this.postData,httpOptions).subscribe(
+
+    this.http.post(this.ROOT_URL,this.postData,{observe: 'response'}).subscribe(
       res => {
+        console.log(res.headers.get("authorization"));
+           this.authorization=res.headers.get("authorization");
+        if(this.authorization==null){
+          this.loginError="Bleeeee";
+        }else{
+          this.loginError="Jest git";
 
-        console.log(res.headers.keys());
-      }
-    );
-    /*  if(this.result>0){
-        this.user.email=fEmail;
-        this.user.password=fPassword;
-        this.user.id=this.result;
-        this.email=fEmail;
-        this.LogedIn=true;
-        this.loginError="";
+          const headers = new HttpHeaders()
+            .set("authorization",res.headers.get("authorization"));
 
-        this.messageEvent.emit(this.user);
+          this.http.get<IUser[]>(this.USER_DATA_URL,{headers:headers}).subscribe(data=>{
+            console.log(data[0].email);
+            this.user.email=data[0].email;
+            this.user.id=data[0].id;
+            this.user.displayName=data[0].displayName;
+            this.LogedIn=true;
+            this.loginError="";
+            this.userWithToken = {user: this.user,token:headers.get("Authorization")};
+            this.messageEvent.emit(this.userWithToken);
+          });
+        }
+      });
+
+
+
+    /*
+
+
+
+    if(this.result>0){
+
+
+
 
 
       }else{
-        this.loginError="email lub hasło nieprawidłowe!"
+
       }
       console.log(data);
     }));

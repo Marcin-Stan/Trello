@@ -10,8 +10,8 @@
     <app-default-main></app-default-main>
   </div>
 <div *ngIf="LogedIn">
-  <h2>Witaj, {{user.email}}</h2>
-<app-show-tables [user]=this.user></app-show-tables>
+  <h2>Witaj, {{userWithToken.user.displayName}}</h2>
+<app-show-tables [userWithToken]=this.userWithToken></app-show-tables>
 </div>
 </section>
 

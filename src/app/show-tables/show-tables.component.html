@@ -3,4 +3,19 @@
   <a>Nazwa tablicy: <strong>{{board.board.name}}</strong></a><br>
   <a>Właściciel: {{board.board.owner.email}}</a><br><br>
 </div>
+<div>
+  <h2>Stwórz nową tablicę</h2>
+  <table>
+    <tr>
+      <td>
+        <label>Nazwa nowej tablicy</label>
+      </td>
+      <td>
+        <input #boardName id="boardName" type="text" name="boardName" >
+      </td>
+    </tr>
+  </table>
+  <button (click)="addBoard(boardName.value)">Dodaj</button>
+</div>
+
 
