@@ -13,6 +13,7 @@ import { ShowBoardComponent } from './show-board/show-board.component';
 import { MatButtonModule} from '@angular/material/button';
 import {MatInputModule} from "@angular/material/input";
 import {MatMenuModule} from "@angular/material/menu";
+import { ExploreBoardComponent } from './explore-board/explore-board.component';
 
 
 @NgModule({
@@ -23,6 +24,7 @@ import {MatMenuModule} from "@angular/material/menu";
     DefaultMainComponent,
     ShowTablesComponent,
     ShowBoardComponent,
+    ExploreBoardComponent,
   ],
   imports: [
     BrowserModule,

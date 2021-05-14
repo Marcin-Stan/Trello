@@ -30,4 +30,8 @@ export class AppComponent {
     this.selectedBoard=$event;
     this.isBoardSelected=true;
   }
+  goToDashboard(){
+    this.selectedBoard=null;
+    this.isBoardSelected=false;
+  }
 }
