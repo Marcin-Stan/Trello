@@ -40,9 +40,4 @@ public class ListController {
         return ResponseEntity.ok(listRepository.save(list));
     }
 
-
-
-
-
-
 }
