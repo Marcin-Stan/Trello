@@ -1,7 +1,3 @@
-mat-grid-tile {
-  background: aliceblue;
-}
-
 mat-grid-tile-header {
   background: darkgoldenrod;
 }
@@ -11,4 +7,9 @@ img {
   height: auto;
 }
 
+.mat-grid-tile {
+  border-radius: 10px;
+  border: 2px solid darkgoldenrod;
+  background: aliceblue;
+}
 

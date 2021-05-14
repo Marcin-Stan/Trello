@@ -5,8 +5,10 @@ div{
   float:left;
 }
 app-register-form{
-  width:60%;
+  width:50%;
+  border: 5px solid darkgoldenrod;
+  border-radius: 5px;
 }
 .info{
-  width:40%;
+  width:50%;
 }

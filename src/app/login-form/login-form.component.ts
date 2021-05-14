@@ -9,6 +9,7 @@ import {IUserWithToken} from "../user-with-token";
   templateUrl: './login-form.component.html',
   styleUrls: ['./login-form.component.css']
 })
+
 export class LoginFormComponent {
 user:IUser={email:"",password:"",id:0,displayName:""};
   userWithToken:IUserWithToken = {user: null, token: null};

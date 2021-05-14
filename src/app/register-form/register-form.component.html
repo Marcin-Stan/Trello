@@ -1,35 +1,37 @@
 
 
-<div style="background-color: dodgerblue">
+<div id = "rejestr" style="background-color: dodgerblue" align="center">
 <div *ngIf="!registered">
   <h2>Zarejestruj się </h2>
     <table>
       <tr>
         <td>
-          <label>E-mail</label>
+          <mat-form-field appearance="outline">
+            <mat-label>Email</mat-label>
+            <input matInput #email id="email" type="text" name="email" placeholder="name@domain.com" >
+          </mat-form-field>
         </td>
+        <tr>
         <td>
-          <input #email id="email" type="text" name="email" >
-        </td>
-        <td>
-          <label>Hasło</label>
-        </td>
-        <td>
-          <input #password id="password" type="password" name="password">
+          <mat-form-field appearance="outline">
+            <mat-label>Hasło</mat-label>
+            <input matInput #password id="password" type="password" name="password" placeholder="8 znaków">
+          </mat-form-field>
         </td>
       </tr>
       <tr>
         <td>
-          <label>Wyświetlana nazwa</label>
-        </td>
-        <td>
-          <input #displayName id="displayName" type="text" name="displayName" >
+          <mat-form-field appearance="outline">
+            <mat-label>Nazwa</mat-label>
+            <input matInput #displayName id="displayName" type="text" name="displayName" placeholder="np. Dodger40" >
+          </mat-form-field>
+
         </td>
 
       </tr>
     </table>
     <p style="color:red">{{loginError}}</p>
-    <button  (click)="onSubmit(email.value,password.value, displayName.value)">Zarejestruj</button>
+    <button  mat-raised-button (click)="onSubmit(email.value,password.value, displayName.value)">Zarejestruj</button>
   </div>
   <div *ngIf="registered">
     <p style="color:lightgreen">{{postMessage}} </p>

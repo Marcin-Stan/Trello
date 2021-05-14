@@ -1,9 +1,12 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {IUser} from "../user";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {IBoard} from "../board";
 import {IBoardUser} from "../board-user";
 import {IUserWithToken} from "../user-with-token";
+import { MatMenuTrigger } from '@angular/material/menu';
+
+
 
 @Component({
   selector: 'app-show-tables',
@@ -25,7 +28,7 @@ export class ShowTablesComponent implements OnInit {
     this.getBoards();
   }
 
-  test(value:string){
+  test(value: number){
   console.log("clicked!"+value);
   }
 
@@ -51,6 +54,34 @@ const headers = new HttpHeaders()
 
     }
 
+  @ViewChild(MatMenuTrigger)
+  contextMenu: MatMenuTrigger;
+
+  contextMenuPosition = { x: '0px', y: '0px' };
+
+  onContextMenu(event: MouseEvent, item: Item) {
+    event.preventDefault();
+    this.contextMenuPosition.x = event.clientX + 'px';
+    this.contextMenuPosition.y = event.clientY + 'px';
+    this.contextMenu.menuData = { 'item': item };
+    this.contextMenu.menu.focusFirstItem('mouse');
+    this.contextMenu.openMenu();
   }
+
+  onContextMenuAction1(item: Item) {
+    alert(`Click on Action 1 for ${item.name}`);
+  }
+
+  onContextMenuAction2(item: Item) {
+    alert(`Click on Action 2 for ${item.name}`);
+  }
+}
+
+export interface Item {
+  id: number;
+  name: string;
+}
+
+
 
 

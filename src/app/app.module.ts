@@ -9,8 +9,10 @@ import { DefaultMainComponent } from './default-main/default-main.component';
 import { ShowTablesComponent } from './show-tables/show-tables.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatGridListModule} from '@angular/material/grid-list';
-
-
+import { ShowBoardComponent } from './show-board/show-board.component';
+import { MatButtonModule} from '@angular/material/button';
+import {MatInputModule} from "@angular/material/input";
+import {MatMenuModule} from "@angular/material/menu";
 
 
 @NgModule({
@@ -20,12 +22,16 @@ import {MatGridListModule} from '@angular/material/grid-list';
     RegisterFormComponent,
     DefaultMainComponent,
     ShowTablesComponent,
+    ShowBoardComponent,
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     BrowserAnimationsModule,
     MatGridListModule,
+    MatButtonModule,
+    MatInputModule,
+    MatMenuModule
 
   ],
   providers: [
