@@ -11,8 +11,10 @@
     </mat-card-title>
 
   </mat-card>
-
-<button></button>
+<br><br>
+<mat-label>Nazwa nowej listy</mat-label>
+<input #listName matInput type="text" >
+<button mat-raised-button (click)="addList(listName.value)">Dodaj</button>
 
 
 
