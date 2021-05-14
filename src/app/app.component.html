@@ -3,6 +3,7 @@
 </header>
 <nav>
   <h1 style="text-align: center">Menu</h1>
+  <button mat-raised-button (click)="goToDashboard()">Dashboard</button>
 </nav>
 
 <section>
@@ -17,6 +18,7 @@
   </div>
   <div *ngIf="isBoardSelected">
     <h1>{{selectedBoard.name}}
+      <app-explore-board [board]=this.selectedBoard ></app-explore-board>
     </h1>
   </div>
 </section>
