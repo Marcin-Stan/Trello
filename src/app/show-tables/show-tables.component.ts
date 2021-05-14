@@ -31,7 +31,7 @@ export class ShowTablesComponent implements OnInit {
   getBoards(){
     const headers = new HttpHeaders()
       .set("authorization",this.userWithToken.token);
-    this.http.get<IBoard[]>(this.ROOT_URL,{headers:headers}).toPromise().then(data => {console.log(data);this.listOfBoards=data;});
+    this.http.post<IBoard[]>(this.ROOT_URL,this.userWithToken.user,{headers:headers}).toPromise().then(data => {console.log(data);this.listOfBoards=data;});
   }
 
   addBoard(boardName:string){

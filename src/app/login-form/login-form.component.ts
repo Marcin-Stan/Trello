@@ -1,8 +1,9 @@
 import { Component, EventEmitter, Output } from "@angular/core";
-import {HttpClient, HttpHeaders, HttpResponse} from '@angular/common/http';
+import {HttpClient, HttpHeaders, HttpParams, HttpResponse} from '@angular/common/http';
 import {IUser} from "../user";
 import {map} from "rxjs/operators";
 import {IUserWithToken} from "../user-with-token";
+import {stringify} from "querystring";
 
 @Component({
   selector: 'app-login-form',
@@ -18,7 +19,7 @@ user:IUser={email:"",password:"",id:0,displayName:""};
   UserId:number;
   result:number;
   readonly ROOT_URL = 'https://pl-paw-2021.herokuapp.com/login';
-  readonly USER_DATA_URL= 'https://pl-paw-2021.herokuapp.com/users';
+  readonly USER_DATA_URL= 'https://pl-paw-2021.herokuapp.com/users/getUserByEmail';
   postData={};
   LogedIn:boolean;
   loginError:string;
@@ -55,11 +56,14 @@ user:IUser={email:"",password:"",id:0,displayName:""};
           const headers = new HttpHeaders()
             .set("authorization",res.headers.get("authorization"));
 
-          this.http.get<IUser[]>(this.USER_DATA_URL,{headers:headers}).subscribe(data=>{
-            console.log(data[0].email);
-            this.user.email=data[0].email;
-            this.user.id=data[0].id;
-            this.user.displayName=data[0].displayName;
+          let params = new HttpParams();
+          params = params.set('email', fEmail);
+
+          this.http.post<IUser>(this.USER_DATA_URL,params,{headers:headers}).subscribe(data=>{
+            console.log(data.displayName);
+            this.user.email=data.email;
+            this.user.id=data.id;
+            this.user.displayName=data.displayName;
             this.LogedIn=true;
             this.loginError="";
             this.userWithToken = {user: this.user,token:headers.get("Authorization")};
