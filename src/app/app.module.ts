@@ -14,6 +14,9 @@ import { MatButtonModule} from '@angular/material/button';
 import {MatInputModule} from "@angular/material/input";
 import {MatMenuModule} from "@angular/material/menu";
 import { ExploreBoardComponent } from './explore-board/explore-board.component';
+import {NameChangeComponent} from "./name-change/name-change.component";
+import {ChangeNameService} from "./change-name-service.service";
+import { MatDialogModule } from '@angular/material/dialog';
 
 
 @NgModule({
@@ -25,6 +28,7 @@ import { ExploreBoardComponent } from './explore-board/explore-board.component';
     ShowTablesComponent,
     ShowBoardComponent,
     ExploreBoardComponent,
+    NameChangeComponent
   ],
   imports: [
     BrowserModule,
@@ -33,11 +37,13 @@ import { ExploreBoardComponent } from './explore-board/explore-board.component';
     MatGridListModule,
     MatButtonModule,
     MatInputModule,
-    MatMenuModule
+    MatMenuModule,
+    MatDialogModule
 
   ],
-  providers: [
+  providers: [ChangeNameService
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  exports: [NameChangeComponent]
 })
 export class AppModule { }
