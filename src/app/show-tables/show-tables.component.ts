@@ -1,4 +1,4 @@
-import {Component, Input, OnInit, ViewChild} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
 import {IUser} from "../user";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {IBoard} from "../board";
@@ -22,7 +22,7 @@ export class ShowTablesComponent implements OnInit {
   result:string;
   listOfBoards:IBoard[];
   @Input() userWithToken :IUserWithToken;
-
+  @Output() messageEvent = new EventEmitter<IBoard>();
   ngOnInit(): void {
     this.getBoards();
   }
@@ -66,11 +66,14 @@ const headers = new HttpHeaders()
 
   onContextMenuAction1(item: IBoard) {
     console.log(item.id);
+    this.messageEvent.emit(item);
   }
 
   onContextMenuAction2(item: IBoard) {
     alert(`Click on Action 2 for ${item.id}`);
   }
+
+
 }
 
 
