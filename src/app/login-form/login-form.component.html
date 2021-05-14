@@ -2,32 +2,22 @@
 <div id="log">
 <div style="background-color: dodgerblue" align="center">
 <div *ngIf="!LogedIn">
+  <div id='loghead'>
   <h2>Zaloguj się </h2>
-  <table>
-    <tr>
-      <td>
-      </td>
-      <td>
+  </div>
+
         <p>
           <mat-form-field  appearance="outline">
             <mat-label>Email</mat-label>
             <input #email matInput placeholder="name@domain.com">
           </mat-form-field>
         </p>
-      </td>
-    </tr>
-    <tr>
-    <td>
 
-    </td>
-    <td>
       <mat-form-field appearance="outline">
         <mat-label>Hasło</mat-label>
         <input #password id="password" type="password" name="password" matInput>
       </mat-form-field>
-    </td>
-    </tr>
-  </table>
+
   <p style="color:red">{{loginError}}</p>
     <button mat-raised-button (click)="onSubmit(email.value,password.value)">Logowanie</button>
 </div>
