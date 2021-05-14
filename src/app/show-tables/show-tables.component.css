@@ -1,0 +1,14 @@
+mat-grid-tile {
+  background: aliceblue;
+}
+
+mat-grid-tile-header {
+  background: darkgoldenrod;
+}
+
+img {
+  width: 100%;
+  height: auto;
+}
+
+
