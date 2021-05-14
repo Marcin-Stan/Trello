@@ -72,6 +72,8 @@ const headers = new HttpHeaders()
   onContextMenuAction2(item: IBoard) {
     alert(`Click on Action 2 for ${item.id}`);
   }
+
+
 }
 
 
