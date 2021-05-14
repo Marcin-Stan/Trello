@@ -1,18 +1,20 @@
 <h4>Oto Twoje tablice</h4>
-<mat-grid-list cols="4" rowHeight="2:1">
-  <mat-grid-tile >
-<div *ngFor="let board of listOfBoards">
 
-    <mat-grid-tile-header [style.backgroundColor]="'darkgoldenrod'">
-      <a>Nazwa tablicy: <strong>{{board.board.name}}</strong></a> <br>
-      <a>Właściciel: {{board.board.owner.email}}</a>
-    </mat-grid-tile-header>
+  <mat-grid-list cols="4" rowHeight="2:1" >
+    <div *ngFor="let board of listOfBoards">
+      <mat-grid-tile (click)="test(board.id)">
 
-    <img src="assets/placeholder.jpg" alt="Placeholder">
+        <mat-grid-tile-header  [style.backgroundColor]="'darkgoldenrod'">
+          <a>Nazwa tablicy: <strong>{{board.name}}</strong> <br>
+          Właściciel: {{board.owner.email}}</a>
+        </mat-grid-tile-header>
 
-</div>
-  </mat-grid-tile>
+        <img src="assets/placeholder.jpg" alt="Placeholder">
+      </mat-grid-tile >
+    </div>
+
   </mat-grid-list>
+
 <div>
   <h2>Stwórz nową tablicę</h2>
   <table>
@@ -27,5 +29,6 @@
   </table>
   <button (click)="addBoard(boardName.value)">Dodaj</button>
 </div>
+
 
 
