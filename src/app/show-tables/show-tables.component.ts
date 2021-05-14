@@ -5,6 +5,7 @@ import {IBoard} from "../board";
 import {IBoardUser} from "../board-user";
 import {IUserWithToken} from "../user-with-token";
 import { MatMenuTrigger } from '@angular/material/menu';
+import {IUserWithBoardAndToken} from "../user-with-board-and-token";
 
 
 
@@ -22,7 +23,7 @@ export class ShowTablesComponent implements OnInit {
   result:string;
   listOfBoards:IBoard[];
   @Input() userWithToken :IUserWithToken;
-  @Output() messageEvent = new EventEmitter<IBoard>();
+  @Output() messageEvent = new EventEmitter<IUserWithBoardAndToken>();
   ngOnInit(): void {
     this.getBoards();
   }
@@ -66,7 +67,8 @@ const headers = new HttpHeaders()
 
   onContextMenuAction1(item: IBoard) {
     console.log(item.id);
-    this.messageEvent.emit(item);
+    let userWitchBoardAndToken:IUserWithBoardAndToken={userWithToken:this.userWithToken, board:item};
+    this.messageEvent.emit(userWitchBoardAndToken);
   }
 
   onContextMenuAction2(item: IBoard) {

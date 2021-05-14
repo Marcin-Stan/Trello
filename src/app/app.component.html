@@ -2,8 +2,10 @@
 <h1>Misja: <b style="color:dodgerblue">{{title}}</b></h1>
 </header>
 <nav>
-  <h1 style="text-align: center">Menu</h1>
-  <button mat-raised-button (click)="goToDashboard()">Dashboard</button>
+  <div *ngIf="LogedIn">
+    <h1 style="text-align: center">Menu</h1>
+    <button mat-raised-button (click)="goToDashboard()">Dashboard</button>
+  </div>
 </nav>
 
 <section>
@@ -17,9 +19,7 @@
 </div>
   </div>
   <div *ngIf="isBoardSelected">
-    <h1>{{selectedBoard.name}}
-      <app-explore-board [board]=this.selectedBoard ></app-explore-board>
-    </h1>
+      <app-explore-board [userWithBoardAndToken]=this.userWithBoardAndToken ></app-explore-board>
   </div>
 </section>
 
