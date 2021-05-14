@@ -5,6 +5,8 @@ import {IBoard} from "../board";
 import {IBoardUser} from "../board-user";
 import {IUserWithToken} from "../user-with-token";
 import { MatMenuTrigger } from '@angular/material/menu';
+import  {ChangeNameService} from "../change-name-service.service";
+import {IUserWithBoardAndToken} from "../user-with-board-and-token";
 
 
 
@@ -17,12 +19,12 @@ export class ShowTablesComponent implements OnInit {
   readonly ROOT_URL = 'https://pl-paw-2021.herokuapp.com/boards';
   readonly ADD_BOARD_URL = 'https://pl-paw-2021.herokuapp.com/boards/add';
   postData={};
-  constructor(private http:HttpClient){
+  constructor(private http:HttpClient, private dialogService: ChangeNameService){
   }
   result:string;
   listOfBoards:IBoard[];
   @Input() userWithToken :IUserWithToken;
-  @Output() messageEvent = new EventEmitter<IBoard>();
+  @Output() messageEvent = new EventEmitter<IUserWithBoardAndToken>();
   ngOnInit(): void {
     this.getBoards();
   }
@@ -66,14 +68,30 @@ const headers = new HttpHeaders()
 
   onContextMenuAction1(item: IBoard) {
     console.log(item.id);
-    this.messageEvent.emit(item);
+    let userWitchBoardAndToken:IUserWithBoardAndToken={userWithToken:this.userWithToken, board:item};
+    this.messageEvent.emit(userWitchBoardAndToken);
   }
 
   onContextMenuAction2(item: IBoard) {
-    alert(`Click on Action 2 for ${item.id}`);
+    this.nameChange();
   }
 
+  nameChange() {
+    const options = {
+      title: 'Zmiana nazwy tablicy',
+      message: 'Podaj nową nazwę: ',
+      cancelText: 'Anuluj',
+      confirmText: 'Potwierdź'
+    };
 
+    this.dialogService.open(options);
+
+    this.dialogService.confirmed().subscribe(confirmed => {
+      if (confirmed) {
+        console.log(confirmed);
+      }
+    });
+  }
 }
 
 
