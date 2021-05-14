@@ -1,4 +1,21 @@
 
-<a> Oto dane tablice: </a><br>
-<a> {{this.board.name}}</a><br>
-<a>{{this.board.id}}</a>
+
+<h1>Tablica {{this.userWithBoardAndToken.board.name}}</h1><br>
+
+  <mat-card *ngFor="let list of lists" style="background-color: white; padding: 20px">
+
+
+    <mat-card-title>
+      {{list.name}}
+
+    </mat-card-title>
+
+  </mat-card>
+
+<button></button>
+
+
+
+
+
+

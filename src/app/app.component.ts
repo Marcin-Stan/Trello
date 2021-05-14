@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {IUser} from "./user";
 import {IUserWithToken} from "./user-with-token";
 import {IBoard} from "./board";
+import {IUserWithBoardAndToken} from "./user-with-board-and-token";
 
 
 
@@ -14,7 +15,7 @@ import {IBoard} from "./board";
 export class AppComponent {
   userWithToken:IUserWithToken;
   title = 'Trello';
-  selectedBoard:IBoard;
+  userWithBoardAndToken:IUserWithBoardAndToken;
   isBoardSelected:boolean;
   LogedIn:boolean;
 
@@ -27,11 +28,11 @@ export class AppComponent {
     this.LogedIn=true;
   }
   boardIsSelected($event){
-    this.selectedBoard=$event;
+    this.userWithBoardAndToken=$event;
     this.isBoardSelected=true;
   }
   goToDashboard(){
-    this.selectedBoard=null;
+    this.userWithBoardAndToken=null;
     this.isBoardSelected=false;
   }
 }
