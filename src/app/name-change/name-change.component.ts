@@ -8,9 +8,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
   styleUrls: ['./name-change.component.css']
 })
 export class NameChangeComponent implements OnInit {
-
-  returnval = "aaaa";
-
+  newName: any;
   constructor(@Inject(MAT_DIALOG_DATA) public data: {
     cancelText: string,
     confirmText: string,
@@ -22,12 +20,12 @@ export class NameChangeComponent implements OnInit {
   }
 
   public cancel() {
-    this.close();
+    this.mdDialogRef.close();
   }
   public close() {
-    this.mdDialogRef.close(this.returnval);
+    this.mdDialogRef.close();
   }
   public confirm() {
-    this.mdDialogRef.close(this.returnval);
+    this.mdDialogRef.close(this.newName);
   }
 }

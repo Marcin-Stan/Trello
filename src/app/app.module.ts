@@ -17,6 +17,7 @@ import { ExploreBoardComponent } from './explore-board/explore-board.component';
 import {NameChangeComponent} from "./name-change/name-change.component";
 import {ChangeNameService} from "./change-name-service.service";
 import { MatDialogModule } from '@angular/material/dialog';
+import {FormsModule} from "@angular/forms";
 
 
 
@@ -39,7 +40,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatButtonModule,
     MatInputModule,
     MatMenuModule,
-    MatDialogModule
+    MatDialogModule,
+    FormsModule
 
   ],
   providers: [ChangeNameService

@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
 import {IUser} from "../user";
-import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
 import {IBoard} from "../board";
 import {IBoardUser} from "../board-user";
 import {IUserWithToken} from "../user-with-token";
@@ -18,6 +18,7 @@ import {IUserWithBoardAndToken} from "../user-with-board-and-token";
 export class ShowTablesComponent implements OnInit {
   readonly ROOT_URL = 'https://pl-paw-2021.herokuapp.com/boards';
   readonly ADD_BOARD_URL = 'https://pl-paw-2021.herokuapp.com/boards/add';
+  readonly ROOT_URL_change_name = 'https://pl-paw-2021.herokuapp.com/boardChangeName';
   postData={};
   constructor(private http:HttpClient, private dialogService: ChangeNameService){
   }
@@ -73,10 +74,10 @@ const headers = new HttpHeaders()
   }
 
   onContextMenuAction2(item: IBoard) {
-    this.nameChange();
+    this.nameChange(item);
   }
 
-  nameChange() {
+  nameChange(item: IBoard) {
     const options = {
       title: 'Zmiana nazwy tablicy',
       message: 'Podaj nową nazwę: ',
@@ -87,8 +88,24 @@ const headers = new HttpHeaders()
     this.dialogService.open(options);
 
     this.dialogService.confirmed().subscribe(confirmed => {
-      if (confirmed) {
+      if (!confirmed.isEmpty) {
         console.log(confirmed);
+        this.postData= {
+          name:confirmed,
+          id:item.id
+        };
+        let params = new HttpParams();
+        params = params.set("name", confirmed);
+        const headers = new HttpHeaders()
+          .set("authorization",this.userWithToken.token);
+        const requestOptions = {
+          headers:headers,
+          params:params
+        };
+        this.http.post(this.ROOT_URL_change_name, item.id, requestOptions).subscribe(data=>{this.getBoards();}
+        );
+        console.log(params);
+
       }
     });
   }

@@ -4,7 +4,9 @@
 <div mat-dialog-content>
   <p class="dialog-message">{{ data.message }}</p>
 </div>
-<input matInput #name id="name">
+<label id="name">
+  <input matInput placeholder="Nowa nazwa" [(ngModel)]='newName'>
+</label>
 <div mat-dialog-actions>
   <button class="btn btn-cancel" style="margin-right:10px;" (click)="cancel()">{{ data.cancelText }}</button>
   <button class="btn" (click)="confirm()">{{ data.confirmText }}</button>
