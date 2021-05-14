@@ -6,13 +6,19 @@
 </nav>
 
 <section>
+  <div *ngIf="!isBoardSelected">
   <div *ngIf="!LogedIn">
     <app-default-main></app-default-main>
   </div>
 <div *ngIf="LogedIn">
   <h2>Witaj, {{userWithToken.user.displayName}}</h2>
-<app-show-tables [userWithToken]=this.userWithToken></app-show-tables>
+<app-show-tables [userWithToken]=this.userWithToken (messageEvent)="boardIsSelected($event)"></app-show-tables>
 </div>
+  </div>
+  <div *ngIf="isBoardSelected">
+    <h1>{{selectedBoard.name}}
+    </h1>
+  </div>
 </section>
 
 <aside>
