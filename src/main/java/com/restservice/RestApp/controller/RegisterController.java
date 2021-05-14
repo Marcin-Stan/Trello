@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Controller
-@CrossOrigin
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class RegisterController {
 
     @Autowired
