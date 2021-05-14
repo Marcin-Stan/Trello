@@ -24,13 +24,9 @@ export class ShowTablesComponent implements OnInit {
   @Input() userWithToken :IUserWithToken;
 
   ngOnInit(): void {
-
     this.getBoards();
   }
 
-  test(value: number){
-  console.log("clicked!"+value);
-  }
 
   getBoards(){
     const headers = new HttpHeaders()
@@ -59,7 +55,7 @@ const headers = new HttpHeaders()
 
   contextMenuPosition = { x: '0px', y: '0px' };
 
-  onContextMenu(event: MouseEvent, item: Item) {
+  onContextMenu(event: MouseEvent, item: IBoard) {
     event.preventDefault();
     this.contextMenuPosition.x = event.clientX + 'px';
     this.contextMenuPosition.y = event.clientY + 'px';
@@ -68,19 +64,16 @@ const headers = new HttpHeaders()
     this.contextMenu.openMenu();
   }
 
-  onContextMenuAction1(item: Item) {
-    alert(`Click on Action 1 for ${item.name}`);
+  onContextMenuAction1(item: IBoard) {
+    console.log(item.id);
   }
 
-  onContextMenuAction2(item: Item) {
-    alert(`Click on Action 2 for ${item.name}`);
+  onContextMenuAction2(item: IBoard) {
+    alert(`Click on Action 2 for ${item.id}`);
   }
 }
 
-export interface Item {
-  id: number;
-  name: string;
-}
+
 
 
 
