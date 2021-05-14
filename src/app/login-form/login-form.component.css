@@ -1,10 +1,17 @@
-.mat-form-field {
+#mat-form-field {
   align-content: center;
+  width: auto;
 }
+
 
 log {
   border: 25px solid dodgerblue;
   border-radius: 15px;
 }
 
+#loghead {
+  background-color: #838c91;
+  width: auto;
+  border-radius: 10px;
+}
 
