@@ -1,3 +1,18 @@
-div{
-  height:200px;
+CSS
+.lists {
+  width:1000px;
+  height:800px;
+}
+.card{
+  background-color: #0c3953;
+  width:80%;
+  padding: 10px;
+  color: lightblue;
+}
+
+.cardHeader{
+  background-color: #b8b8b8;
+  width:80%;
+  alignment: center;
+  color: black;
 }
