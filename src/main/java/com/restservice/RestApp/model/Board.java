@@ -31,9 +31,13 @@ public class Board {
     @JoinColumn(name = "owner_id",referencedColumnName = "id")
     private User owner;
 
-    @OneToMany(mappedBy = "board")
+    @OneToMany(mappedBy = "board",cascade = CascadeType.ALL)
     @JsonIgnore
     private List<BoardUser> boardUsersList;
+
+    @OneToMany(mappedBy = "board",cascade = CascadeType.ALL)
+    @JsonIgnore
+    private List<com.restservice.RestApp.model.List> lists;
 
     public Board(@NotEmpty String name,
                  @NotEmpty User user){
