@@ -22,5 +22,12 @@ public class BoardUser {
     @JoinColumn(name = "user_id",referencedColumnName = "id")
     private User user;
 
+    public BoardUser(Board board, User user) {
+        this.board = board;
+        this.user = user;
+    }
 
+    public BoardUser() {
+
+    }
 }

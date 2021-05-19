@@ -1,9 +1,11 @@
 package com.restservice.RestApp.controller;
 
 import com.restservice.RestApp.model.Board;
+import com.restservice.RestApp.model.BoardUser;
 import com.restservice.RestApp.model.Status;
 import com.restservice.RestApp.model.User;
 import com.restservice.RestApp.repository.BoardRepository;
+import com.restservice.RestApp.repository.BoardUserRepository;
 import com.restservice.RestApp.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -20,6 +22,9 @@ public class BoardController {
     @Autowired
     BoardRepository boardRepository;
 
+    @Autowired
+    BoardUserRepository boardUserRepository;
+
     @PostMapping("/boards")
     public ResponseEntity<List<Board>> getBoardsbyId(@RequestBody User user){
         return ResponseEntity.ok(boardRepository.findAllByOwner(user));
@@ -34,7 +39,9 @@ public class BoardController {
 
     @PostMapping("/boards/add")
     public ResponseEntity addNewBoard(@Valid @RequestBody Board board){
-        return ResponseEntity.ok(boardRepository.save(board));
+        boardRepository.save(board);
+        BoardUser boardUser = new BoardUser(board,board.getOwner());
+        return ResponseEntity.ok( boardUserRepository.save(boardUser));
     }
 
     @PostMapping("/boards/checkOwner")
