@@ -1,12 +1,10 @@
-
-
 <h1>Tablica {{this.userWithBoardAndToken.board.name}}</h1><br>
 
 <mat-grid-list cols="4" [gutterSize]="'10px'" style="height:80%">
   <mat-grid-tile *ngFor="let list of lists" style="background-color: white; padding: 20px; height:100%">
-  <mat-grid-tile-header style="background-color: white; padding: 10px; color: #0c3953; font-size: 20px">
-    <a>{{list.name}}</a>
-  </mat-grid-tile-header>
+    <mat-grid-tile-header style="background-color: white; padding: 10px; color: #0c3953; font-size: 20px">
+      <a>{{list.name}}</a>
+    </mat-grid-tile-header>
     <mat-gtid-title-content>
       <mat-card class="card">
         <mat-card-header class="cardHeader">
@@ -26,12 +24,11 @@
     </mat-gtid-title-content>
 
 
-
-      </mat-grid-tile>
-    </mat-grid-list>
+  </mat-grid-tile>
+</mat-grid-list>
 <br><br>
 <mat-label>Nazwa nowej listy</mat-label>
-<input #listName matInput type="text" >
+<input #listName matInput type="text">
 <button mat-raised-button (click)="addList(listName.value)">Dodaj</button>
 
 

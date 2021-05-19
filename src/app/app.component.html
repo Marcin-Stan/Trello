@@ -1,5 +1,5 @@
 <header>
-<h1>Misja: <b style="color:#0c3953">{{title}}</b></h1>
+  <h1>Misja: <b style="color:#0c3953">{{title}}</b></h1>
 </header>
 <nav>
   <div *ngIf="LogedIn">
@@ -10,19 +10,19 @@
 
 <section>
   <div *ngIf="!isBoardSelected">
-  <div *ngIf="!LogedIn">
-    <app-default-main></app-default-main>
-  </div>
-<div *ngIf="LogedIn">
-  <h2>Witaj, {{userWithToken.user.displayName}}</h2>
-<app-show-tables [userWithToken]=this.userWithToken (messageEvent)="boardIsSelected($event)"></app-show-tables>
-</div>
+    <div *ngIf="!LogedIn">
+      <app-default-main></app-default-main>
+    </div>
+    <div *ngIf="LogedIn">
+      <h2>Witaj, {{userWithToken.user.displayName}}</h2>
+      <app-show-tables [userWithToken]=this.userWithToken (messageEvent)="boardIsSelected($event)"></app-show-tables>
+    </div>
   </div>
   <div *ngIf="isBoardSelected">
-      <app-explore-board [userWithBoardAndToken]=this.userWithBoardAndToken ></app-explore-board>
+    <app-explore-board [userWithBoardAndToken]=this.userWithBoardAndToken></app-explore-board>
   </div>
 </section>
 
 <aside>
-<app-login-form (messageEvent)="receiveMessage($event)"></app-login-form>
+  <app-login-form (messageEvent)="receiveMessage($event)"></app-login-form>
 </aside>

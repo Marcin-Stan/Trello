@@ -1,13 +1,10 @@
 import {Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
-import {IUser} from "../user";
 import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
 import {IBoard} from "../board";
-import {IBoardUser} from "../board-user";
 import {IUserWithToken} from "../user-with-token";
-import { MatMenuTrigger } from '@angular/material/menu';
-import  {ChangeNameService} from "../change-name-service.service";
+import {MatMenuTrigger} from '@angular/material/menu';
+import {ChangeNameService} from "../change-name-service.service";
 import {IUserWithBoardAndToken} from "../user-with-board-and-token";
-
 
 
 @Component({

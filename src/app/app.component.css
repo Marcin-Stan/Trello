@@ -5,26 +5,28 @@ header {
   text-align: center;
   color: white;
 }
-nav{
+
+nav {
   float: left;
   background-color: dodgerblue;
-  height:95%;
-  width:10%;
+  height: 95%;
+  width: 10%;
   padding: 20px;
 }
-section{
-  padding:10px;
-  float:left;
+
+section {
+  padding: 10px;
+  float: left;
   height: 95%;
   background-color: deepskyblue;
-  width:75%;
+  width: 75%;
 }
 
-aside{
+aside {
   padding: 10px;
   text-align: center;
   float: left;
   background-color: dodgerblue;
-  width:15%;
-  height:95%;
+  width: 15%;
+  height: 95%;
 }

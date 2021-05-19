@@ -1,10 +1,6 @@
-import { Component } from '@angular/core';
-import {HttpClient} from '@angular/common/http';
-import {IUser} from "./user";
+import {Component} from '@angular/core';
 import {IUserWithToken} from "./user-with-token";
-import {IBoard} from "./board";
 import {IUserWithBoardAndToken} from "./user-with-board-and-token";
-
 
 
 @Component({
@@ -13,26 +9,28 @@ import {IUserWithBoardAndToken} from "./user-with-board-and-token";
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  userWithToken:IUserWithToken;
+  userWithToken: IUserWithToken;
   title = 'Trello';
-  userWithBoardAndToken:IUserWithBoardAndToken;
-  isBoardSelected:boolean;
-  LogedIn:boolean;
+  userWithBoardAndToken: IUserWithBoardAndToken;
+  isBoardSelected: boolean;
+  LogedIn: boolean;
 
-  constructor(){
-    this.LogedIn=false;
+  constructor() {
+    this.LogedIn = false;
   }
 
-  receiveMessage($event){
-    this.userWithToken=$event;
-    this.LogedIn=true;
+  receiveMessage($event) {
+    this.userWithToken = $event;
+    this.LogedIn = true;
   }
-  boardIsSelected($event){
-    this.userWithBoardAndToken=$event;
-    this.isBoardSelected=true;
+
+  boardIsSelected($event) {
+    this.userWithBoardAndToken = $event;
+    this.isBoardSelected = true;
   }
-  goToDashboard(){
-    this.userWithBoardAndToken=null;
-    this.isBoardSelected=false;
+
+  goToDashboard() {
+    this.userWithBoardAndToken = null;
+    this.isBoardSelected = false;
   }
 }

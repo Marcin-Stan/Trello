@@ -1,4 +1,4 @@
 export interface IList {
-  if:number;
-  name:string;
+  if: number;
+  name: string;
 }

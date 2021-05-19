@@ -1,6 +1,6 @@
-import { TestBed } from '@angular/core/testing';
+import {TestBed} from '@angular/core/testing';
 
-import { ChangeNameService } from './change-name-service.service';
+import {ChangeNameService} from './change-name-service.service';
 
 describe('ChangeNameServiceService', () => {
   let service: ChangeNameService;

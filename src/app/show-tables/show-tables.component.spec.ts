@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { ShowTablesComponent } from './show-tables.component';
+import {ShowTablesComponent} from './show-tables.component';
 
 describe('ShowTablesComponent', () => {
   let component: ShowTablesComponent;
@@ -8,9 +8,9 @@ describe('ShowTablesComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ShowTablesComponent ]
+      declarations: [ShowTablesComponent]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

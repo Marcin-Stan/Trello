@@ -1,11 +1,14 @@
-import { Injectable } from '@angular/core';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Observable } from 'rxjs';
-import { map, take } from 'rxjs/operators';
-import { NameChangeComponent } from './name-change/name-change.component';
+import {Injectable} from '@angular/core';
+import {MatDialog, MatDialogRef} from '@angular/material/dialog';
+import {Observable} from 'rxjs';
+import {map, take} from 'rxjs/operators';
+import {NameChangeComponent} from './name-change/name-change.component';
+
 @Injectable()
 export class ChangeNameService {
-  constructor(private dialog: MatDialog) { }
+  constructor(private dialog: MatDialog) {
+  }
+
   dialogRef: MatDialogRef<NameChangeComponent>;
 
   public open(options) {
@@ -18,6 +21,7 @@ export class ChangeNameService {
       }
     });
   }
+
   public confirmed(): Observable<any> {
 
     return this.dialogRef.afterClosed().pipe(take(1), map(data => {

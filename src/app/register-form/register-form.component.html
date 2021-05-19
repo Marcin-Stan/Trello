@@ -1,17 +1,15 @@
-
-
-<div id = "rejestr" style="background-color: dodgerblue" align="center">
-<div  id ="nlog" *ngIf="!registered">
-  <h2>Zarejestruj się </h2>
+<div id="rejestr" style="background-color: dodgerblue" align="center">
+  <div id="nlog" *ngIf="!registered">
+    <h2>Zarejestruj się </h2>
     <table>
       <tr>
         <td>
           <mat-form-field appearance="outline">
             <mat-label>Email</mat-label>
-            <input matInput #email id="email" type="text" name="email" placeholder="name@domain.com" >
+            <input matInput #email id="email" type="text" name="email" placeholder="name@domain.com">
           </mat-form-field>
         </td>
-        <tr>
+      <tr>
         <td>
           <mat-form-field appearance="outline">
             <mat-label>Hasło</mat-label>
@@ -23,7 +21,7 @@
         <td>
           <mat-form-field appearance="outline">
             <mat-label>Nazwa</mat-label>
-            <input matInput #displayName id="displayName" type="text" name="displayName" placeholder="np. Dodger40" >
+            <input matInput #displayName id="displayName" type="text" name="displayName" placeholder="np. Dodger40">
           </mat-form-field>
 
         </td>
@@ -31,7 +29,7 @@
       </tr>
     </table>
     <p style="color:red">{{loginError}}</p>
-    <button  mat-raised-button (click)="onSubmit(email.value,password.value, displayName.value)">Zarejestruj</button>
+    <button mat-raised-button (click)="onSubmit(email.value,password.value, displayName.value)">Zarejestruj</button>
   </div>
   <div *ngIf="registered">
     <p style="color:lightgreen">{{postMessage}} </p>
