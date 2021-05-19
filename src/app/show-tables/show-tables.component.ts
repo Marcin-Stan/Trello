@@ -13,7 +13,7 @@ import {IUserWithBoardAndToken} from "../user-with-board-and-token";
   styleUrls: ['./show-tables.component.css']
 })
 export class ShowTablesComponent implements OnInit {
-  readonly ROOT_URL = 'https://pl-paw-2021.herokuapp.com/boards';
+  readonly ROOT_URL = 'https://pl-paw-2021.herokuapp.com/boardsUser/getByUser';
   readonly ADD_BOARD_URL = 'https://pl-paw-2021.herokuapp.com/boards/add';
   readonly ROOT_URL_change_name = 'https://pl-paw-2021.herokuapp.com/boardChangeName';
   postData = {};
@@ -21,9 +21,10 @@ export class ShowTablesComponent implements OnInit {
   constructor(private http: HttpClient, private dialogService: ChangeNameService, private dialogService2: ChangeNameService) {
   }
 
-  result: string;
-  listOfBoards: IBoard[];
-  @Input() userWithToken: IUserWithToken;
+  result:string;
+  listOfBoards:IBoardUser[];
+  @Input() userWithToken :IUserWithToken;
+
   @Output() messageEvent = new EventEmitter<IUserWithBoardAndToken>();
 
   ngOnInit(): void {
@@ -33,11 +34,10 @@ export class ShowTablesComponent implements OnInit {
 
   getBoards() {
     const headers = new HttpHeaders()
-      .set("authorization", this.userWithToken.token);
-    this.http.post<IBoard[]>(this.ROOT_URL, this.userWithToken.user, {headers: headers}).toPromise().then(data => {
-      console.log(data);
-      this.listOfBoards = data;
-    });
+
+      .set("authorization",this.userWithToken.token);
+    this.http.post<IBoardUser[]>(this.ROOT_URL,this.userWithToken.user,{headers:headers}).toPromise().then(data => {console.log(data);this.listOfBoards=data;});
+
   }
 
   addBoard(boardName: string) {
