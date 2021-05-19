@@ -6,6 +6,10 @@ import {MatMenuTrigger} from '@angular/material/menu';
 import {ChangeNameService} from "../change-name-service.service";
 import {IUserWithBoardAndToken} from "../user-with-board-and-token";
 import {IBoardUser} from "../board-user";
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import {Observable} from "rxjs";
+import {FormControl} from "@angular/forms";
+import {map, startWith} from "rxjs/operators";
 
 
 @Component({
@@ -16,8 +20,12 @@ import {IBoardUser} from "../board-user";
 export class ShowTablesComponent implements OnInit {
   readonly ROOT_URL = 'https://pl-paw-2021.herokuapp.com/boardsUser/getByUser';
   readonly ADD_BOARD_URL = 'https://pl-paw-2021.herokuapp.com/boards/add';
+  readonly GET_NICKNAMES_URL = 'https://pl-paw-2021.herokuapp.com/users';
   readonly ROOT_URL_change_name = 'https://pl-paw-2021.herokuapp.com/boardChangeName';
   postData = {};
+  myControl = new FormControl();
+  nicknames:string[];
+  filteredOptions: Observable<string[]>;
 
   constructor(private http: HttpClient, private dialogService: ChangeNameService, private dialogService2: ChangeNameService) {
   }
@@ -30,14 +38,27 @@ export class ShowTablesComponent implements OnInit {
 
   ngOnInit(): void {
     this.getBoards();
+    this.getNicknames();
   }
 
 
   getBoards() {
     const headers = new HttpHeaders()
-
       .set("authorization",this.userWithToken.token);
     this.http.post<IBoardUser[]>(this.ROOT_URL,this.userWithToken.user,{headers:headers}).toPromise().then(data => {console.log(data);this.listOfBoards=data;});
+
+  }
+
+  getNicknames(){
+    const headers = new HttpHeaders()
+      .set("authorization",this.userWithToken.token);
+    this.http.get<string[]>(this.GET_NICKNAMES_URL,{headers:headers}).toPromise().then(data => {
+      this.nicknames = data
+      this.filteredOptions = this.myControl.valueChanges.pipe(
+        startWith(''),
+        map(value => this._filter(value))
+      );
+    });
 
   }
 
@@ -132,6 +153,11 @@ export class ShowTablesComponent implements OnInit {
         this.addBoard(confirmed);
       }
     });
+  }
+
+  private _filter(value: string): string[] {
+    const filterValue = value.toLowerCase();
+    return this.nicknames.filter(option => option.toLowerCase().indexOf(filterValue) === 0);
   }
 }
 

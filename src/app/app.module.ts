@@ -17,8 +17,10 @@ import {ExploreBoardComponent} from './explore-board/explore-board.component';
 import {NameChangeComponent} from "./name-change/name-change.component";
 import {ChangeNameService} from "./change-name-service.service";
 import {MatDialogModule} from '@angular/material/dialog';
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatCardModule} from "@angular/material/card";
+import {MatOptionModule} from "@angular/material/core";
+import {MatAutocompleteModule} from "@angular/material/autocomplete";
 
 
 @NgModule({
@@ -42,7 +44,10 @@ import {MatCardModule} from "@angular/material/card";
     MatMenuModule,
     MatDialogModule,
     FormsModule,
-    MatCardModule
+    MatCardModule,
+    MatOptionModule,
+    MatAutocompleteModule,
+    ReactiveFormsModule
 
   ],
   providers: [ChangeNameService
