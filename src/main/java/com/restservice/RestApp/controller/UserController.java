@@ -4,6 +4,7 @@ import com.restservice.RestApp.model.Status;
 import com.restservice.RestApp.model.User;
 import com.restservice.RestApp.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.ArrayList;
@@ -27,6 +28,11 @@ public class UserController {
     public Status deleteUsers() {
         userRepository.deleteAll();
         return Status.SUCCESS;
+    }
+
+    @PostMapping("/users/getUserByDisplayName")
+    public ResponseEntity<User> getUserByDisplayName(String displayName){
+        return ResponseEntity.ok(userRepository.findByDisplayName(displayName));
     }
 
     /*

@@ -14,6 +14,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,14 +33,18 @@ public class RegisterController {
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @PostMapping("/register")
-    public ResponseEntity processRegister(@RequestBody LoginCredentials credentials) {
-        String encodedPassword = bCryptPasswordEncoder.encode(credentials.getPassword());
-        User user = new User();
-        user.setEmail(credentials.getUsername());
-        user.setPassword(encodedPassword);
-        user.setEnabled(true);
-        user.setDisplayName(credentials.getDisplayName());
-        return ResponseEntity.ok(userRepository.save(user));
+    public ResponseEntity<User> processRegister(@RequestBody LoginCredentials credentials) {
+        if(!credentials.getUsername().isEmpty() && !credentials.getPassword().isEmpty()) {
+            String encodedPassword = bCryptPasswordEncoder.encode(credentials.getPassword());
+            User user = new User();
+            user.setEmail(credentials.getUsername());
+            user.setPassword(encodedPassword);
+            user.setEnabled(true);
+            user.setDisplayName(credentials.getDisplayName());
+            return ResponseEntity.ok(userRepository.save(user));
+        }
+
+        return ResponseEntity.badRequest().build();
     }
 
     @PostMapping("/addAuthorities")
