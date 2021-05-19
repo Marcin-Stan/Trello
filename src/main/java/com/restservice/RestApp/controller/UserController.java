@@ -6,6 +6,7 @@ import com.restservice.RestApp.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -28,8 +29,22 @@ public class UserController {
         return Status.SUCCESS;
     }
 
+    /*
     @GetMapping("/users")
     public List<User> getUsers(){
         return userRepository.findAll();
     }
+
+     */
+
+    @GetMapping("/users")
+    public List<String> getUsersNickname(){
+        List<String> usersNickname = new ArrayList<>();
+        for(User user: userRepository.findAll()){
+            usersNickname.add(user.getDisplayName());
+        }
+        return usersNickname;
+    }
+
+
 }

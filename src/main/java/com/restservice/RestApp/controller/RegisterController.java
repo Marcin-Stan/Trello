@@ -37,7 +37,7 @@ public class RegisterController {
         user.setEmail(credentials.getUsername());
         user.setPassword(encodedPassword);
         user.setEnabled(true);
-
+        user.setDisplayName(credentials.getDisplayName());
         return ResponseEntity.ok(userRepository.save(user));
     }
 
