@@ -28,24 +28,29 @@ export class RegisterFormComponent {
   }
 
   onSubmit(fEmail: string, fPassword: string, fDisplayName) {
-    this.postData = {
-      username: fEmail,
-      password: fPassword
+    if(fDisplayName!=""){
+      this.postData = {
+        username: fEmail,
+        password: fPassword,
+        displayName: fDisplayName
+      }
+
+      this.http.post<string>(this.ROOT_URL, this.postData).subscribe(data => {
+        let params = new HttpParams();
+        params = params.set('username', fEmail);
+        this.http.post(this.ROOT_URL_authorisis, params).subscribe(data => {
+          }
+        );
+        this.registered = true;
+        this.loginError = "";
+        this.postMessage = "Dodano użytkownika "
+        this.postMessage += fDisplayName;
+
+      });
+    }else{
+      this.loginError = "Pole nazwa nie może być puste!";
     }
 
-    this.http.post<string>(this.ROOT_URL, this.postData).subscribe(data => {
-      console.log(data);
-      let params = new HttpParams();
-      params = params.set('username', fEmail);
-      this.http.post(this.ROOT_URL_authorisis, params).subscribe(data => {
-        }
-      );
-      this.registered = true;
-      this.loginError = "";
-      this.postMessage = "Dodano użytkownika "
-      this.postMessage += fDisplayName;
-
-    });
 
   }
 }
