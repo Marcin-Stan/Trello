@@ -5,6 +5,7 @@ import {IUserWithToken} from "../user-with-token";
 import {MatMenuTrigger} from '@angular/material/menu';
 import {ChangeNameService} from "../change-name-service.service";
 import {IUserWithBoardAndToken} from "../user-with-board-and-token";
+import {IBoardUser} from "../board-user";
 
 
 @Component({
