@@ -25,4 +25,8 @@
 
 <aside>
   <app-login-form (messageEvent)="receiveMessage($event)"></app-login-form>
+  <div *ngIf="isBoardSelected">
+    <app-add-user-to-board [userWithToken]=this.userWithToken></app-add-user-to-board>
+  </div>
+
 </aside>

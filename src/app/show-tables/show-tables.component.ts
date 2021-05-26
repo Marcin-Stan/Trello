@@ -6,7 +6,6 @@ import {MatMenuTrigger} from '@angular/material/menu';
 import {ChangeNameService} from "../change-name-service.service";
 import {IUserWithBoardAndToken} from "../user-with-board-and-token";
 import {IBoardUser} from "../board-user";
-import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {Observable} from "rxjs";
 import {FormControl} from "@angular/forms";
 import {map, startWith} from "rxjs/operators";
@@ -76,7 +75,6 @@ export class ShowTablesComponent implements OnInit {
       res => {
         this.getBoards();
       });
-
   }
 
   @ViewChild(MatMenuTrigger)
