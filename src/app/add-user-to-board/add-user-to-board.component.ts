@@ -5,6 +5,7 @@ import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
 import {map, startWith} from "rxjs/operators";
 import {IUserWithToken} from "../user-with-token";
 import {IUser} from "../user";
+import {IUserWithBoardAndToken} from "../user-with-board-and-token";
 
 @Component({
   selector: 'app-add-user-to-board',
@@ -13,14 +14,15 @@ import {IUser} from "../user";
 })
 export class AddUserToBoardComponent implements OnInit {
   readonly GET_NICKNAMES_URL = 'https://pl-paw-2021.herokuapp.com/users';
-  readonly GET_USER_BY_ID='https://pl-paw-2021.herokuapp.com//users/getUserByDisplayName';
+  readonly GET_USER_BY_ID='https://pl-paw-2021.herokuapp.com/users/getUserByDisplayName';
+  readonly ADD_USER_TO_BOARDUSER ='https://pl-paw-2021.herokuapp.com/boardsUser/add';
 
   myControl = new FormControl();
   nicknames:string[];
   filteredOptions: Observable<string[]>;
   constructor(private http: HttpClient) { }
 
-  @Input() userWithToken :IUserWithToken;
+  @Input() userWithBoardAndToken :IUserWithBoardAndToken;
 
   ngOnInit(): void {
     this.getNicknames();
@@ -33,7 +35,7 @@ export class AddUserToBoardComponent implements OnInit {
 
   getNicknames(){
     const headers = new HttpHeaders()
-      .set("authorization",this.userWithToken.token);
+      .set("authorization",this.userWithBoardAndToken.userWithToken.token);
     this.http.get<string[]>(this.GET_NICKNAMES_URL,{headers:headers}).toPromise().then(data => {
       console.log("elo");
       this.nicknames = data;
@@ -48,15 +50,24 @@ export class AddUserToBoardComponent implements OnInit {
     let params = new HttpParams();
     params = params.set("displayName", userName);
     const headers = new HttpHeaders()
-      .set("authorization", this.userWithToken.token);
-    const requestOptions = {
-      headers: headers,
-      params: params
-    };
-    let userToAdd;
-    this.http.post<IUser>(this.GET_USER_BY_ID,requestOptions).subscribe(data=>{
+      .set("authorization", this.userWithBoardAndToken.userWithToken.token);
+
+    var userToAdd;
+    this.http.post<IUser>(this.GET_USER_BY_ID,params,{headers:headers}).subscribe(data=>{
       userToAdd=data;
       console.log(userToAdd.id);
+      let postData={
+        id:0,
+        board :{
+          id:this.userWithBoardAndToken.board.id,
+        },
+        user:{
+          id:userToAdd.id,
+        }
+      };
+      this.http.post(this.ADD_USER_TO_BOARDUSER,postData,{headers:headers}).subscribe(res=>{
+        console.log(res);
+      });
     })
   }
 
