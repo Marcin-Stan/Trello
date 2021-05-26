@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {IUserWithBoardAndToken} from "../user-with-board-and-token";
 import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
 import {IList} from "../list";
+import {ChangeNameService} from "../change-name-service.service";
 
 @Component({
   selector: 'app-explore-board',
@@ -14,7 +15,7 @@ export class ExploreBoardComponent implements OnInit {
   readonly ROOT_ADD_URL = 'https://pl-paw-2021.herokuapp.com/list/add';
   lists: IList[];
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private dialogService: ChangeNameService) {
   }
 
   ngOnInit(): void {
@@ -44,4 +45,20 @@ export class ExploreBoardComponent implements OnInit {
     })
   }
 
+  buttonAddList() {
+    const options = {
+      title: 'Tworzenie nowej listy',
+      message: 'Podaj nazwę listy: ',
+      cancelText: 'Anuluj',
+      confirmText: 'Potwierdź'
+    };
+
+    this.dialogService.open(options);
+    this.dialogService.confirmed().subscribe(confirmed => {
+      if (!confirmed.isEmpty) {
+        console.log(confirmed);
+        this.addList(confirmed);
+      }
+    });
+  }
 }
