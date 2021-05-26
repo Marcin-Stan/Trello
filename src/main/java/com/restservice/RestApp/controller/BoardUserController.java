@@ -33,6 +33,11 @@ public class BoardUserController {
         return boardUserRepository.findByUserId(user.getId());
     }
 
+    @PostMapping("/boardsUser/getUsersByBoard")
+    public List<User> getUserByBoar(@RequestBody Board board){
+        return boardUserRepository.retrieveEmployeesByBoard(board);
+    }
+
 
 
 }

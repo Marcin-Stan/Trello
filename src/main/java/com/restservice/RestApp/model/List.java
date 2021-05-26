@@ -1,5 +1,6 @@
 package com.restservice.RestApp.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import org.hibernate.annotations.ColumnDefault;
 
@@ -21,6 +22,11 @@ public class List {
     @ManyToOne
     @JoinColumn(name = "board_id",referencedColumnName = "id")
     private Board board;
+
+    @OneToMany(mappedBy = "list",cascade = CascadeType.ALL)
+    @JsonIgnore
+    private java.util.List<Card> cardList;
+
 
     @Column(name = "archived")
     private Boolean isArchived;
