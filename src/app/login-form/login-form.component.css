@@ -5,12 +5,12 @@
 
 
 log {
-  border: 25px solid dodgerblue;
+  border: 25px solid #026aa7;
   border-radius: 15px;
 }
 
 #loghead {
-  background-color: #838c91;
+  background-color: #026aa7;
   width: auto;
   border-radius: 10px;
 }

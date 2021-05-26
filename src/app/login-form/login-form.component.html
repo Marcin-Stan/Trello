@@ -1,16 +1,15 @@
 <div id="log">
-  <div style="background-color: dodgerblue" align="center">
+  <div style="background-color: #298fca" align="center">
     <div *ngIf="!LogedIn">
       <div id='loghead'>
-        <h2>Zaloguj się </h2>
-      </div>
-
-      <p>
-        <mat-form-field appearance="outline">
+        <mat-card>
+        <mat-card-title>Zaloguj się</mat-card-title>
+          <mat-card-content>
+          <mat-form-field appearance="outline">
           <mat-label>Email</mat-label>
           <input #email matInput placeholder="name@domain.com">
         </mat-form-field>
-      </p>
+
 
       <mat-form-field appearance="outline">
         <mat-label>Hasło</mat-label>
@@ -19,9 +18,17 @@
 
       <p style="color:red">{{loginError}}</p>
       <button mat-raised-button (click)="onSubmit(email.value,password.value)">Logowanie</button>
+            </mat-card-content>
+      </mat-card>
+      </div>
     </div>
     <div *ngIf="LogedIn">
+      <mat-card>
+        <mat-card-title>
       <a>Jesteś zalogowany jako <b>{{user.displayName}}</b></a>
+        </mat-card-title>
+      </mat-card>
+
     </div>
   </div>
 </div>

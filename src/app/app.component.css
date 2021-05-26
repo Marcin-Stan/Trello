@@ -8,17 +8,17 @@ header {
 
 nav {
   float: left;
-  background-color: dodgerblue;
+  background-color: #026aa7;
   height: 95%;
   width: 10%;
-  padding: 20px;
+  text-align: center;
 }
 
 section {
   padding: 10px;
   float: left;
   height: 95%;
-  background-color: deepskyblue;
+  background-color: #026aa7;
   width: 75%;
 }
 
@@ -26,7 +26,16 @@ aside {
   padding: 10px;
   text-align: center;
   float: left;
-  background-color: dodgerblue;
+  background-color: #026aa7;
   width: 15%;
   height: 95%;
 }
+
+mat-card {
+  justify-content: center;
+  min-height: 100%;
+}
+
+
+
+
