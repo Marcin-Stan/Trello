@@ -1,38 +1,34 @@
-<div id="rejestr" style="background-color: dodgerblue" align="center">
-  <div id="nlog" *ngIf="!registered">
-    <h2>Zarejestruj się </h2>
-    <table>
-      <tr>
-        <td>
-          <mat-form-field appearance="outline">
-            <mat-label>Email</mat-label>
-            <input matInput #email id="email" type="text" name="email" placeholder="name@domain.com">
-          </mat-form-field>
-        </td>
-      <tr>
-        <td>
-          <mat-form-field appearance="outline">
-            <mat-label>Hasło</mat-label>
-            <input matInput #password id="password" type="password" name="password" placeholder="8 znaków">
-          </mat-form-field>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <mat-form-field appearance="outline">
-            <mat-label>Nazwa</mat-label>
-            <input matInput #displayName id="displayName" type="text" name="displayName" placeholder="np. Dodger40">
-          </mat-form-field>
+<div *ngIf="!registered">
+  <mat-card>
+    <mat-card-title>
+      Rejestracja
+    </mat-card-title>
+    <mat-card-content>
+      <mat-form-field appearance="outline">
+        <mat-label>Email</mat-label>
+        <input matInput [(ngModel)]="email" name="email" type="email" form>
+      </mat-form-field>
+      <br>
 
-        </td>
+      <mat-form-field appearance="outline">
+        <mat-label>Hasło</mat-label>
+        <input matInput [(ngModel)]="password" name="password" type="password" placeholder="8 znaków">
+      </mat-form-field>
+      <br>
 
-      </tr>
-    </table>
-    <p style="color:red">{{loginError}}</p>
-    <button mat-raised-button (click)="onSubmit(email.value,password.value, displayName.value)">Zarejestruj</button>
-  </div>
-  <div *ngIf="registered">
-    <p style="color:lightgreen">{{postMessage}} </p>
-  </div>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Nazwa</mat-label>
+        <input matInput [(ngModel)]="displayName" name="displayName" type="text" placeholder="np. Dodger40">
+      </mat-form-field>
+      <br>
+
+      <button mat-raised-button (click)="onSubmit(email,password,displayName)"> Zarejestruj</button>
+    </mat-card-content>
+  </mat-card>
 </div>
+<div *ngIf="registered">
+  <p style="color:lightgreen">{{postMessage}} </p>
+</div>
+
 

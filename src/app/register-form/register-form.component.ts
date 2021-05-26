@@ -10,6 +10,7 @@ export class RegisterFormComponent {
 
   email: string = "";
   password: string = "";
+  displayName: string ="";
   UserId: number;
   result: string;
   readonly ROOT_URL = 'https://pl-paw-2021.herokuapp.com/register';
@@ -21,6 +22,7 @@ export class RegisterFormComponent {
   postMessage: string;
 
   @Output() messageEvent = new EventEmitter<string>();
+  registerForm: any;
 
 
   constructor(private http: HttpClient) {

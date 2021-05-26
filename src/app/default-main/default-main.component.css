@@ -1,17 +1,5 @@
-app-register-form {
-  float: right;
-}
-
-div {
-  float: left;
-}
-
-app-register-form {
-  width: 50%;
-  border: 5px solid dodgerblue;
-  border-radius: 15px;
-}
-
 .info {
-  width: 50%;
+  width: 49%;
+  float: left;
+  text-align: center;
 }
