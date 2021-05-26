@@ -2,27 +2,9 @@
 
 <mat-grid-list cols="4" [gutterSize]="'10px'" style="height:80%">
   <mat-grid-tile *ngFor="let list of lists" style="background-color: white; padding: 20px; height:100%">
-    <mat-grid-tile-header style="background-color: white; padding: 10px; color: #0c3953; font-size: 20px">
+    <mat-grid-tile-header style="background-color: #5ba4cf; font-size: 20px">
       <a>{{list.name}}</a>
     </mat-grid-tile-header>
-    <mat-gtid-title-content>
-      <mat-card class="card">
-        <mat-card-header class="cardHeader">
-          <mat-card-title>test</mat-card-title>
-        </mat-card-header>
-        <mat-card-content>
-          Lorem Ipsum
-        </mat-card-content>
-      </mat-card>
-      <br>
-
-      <mat-card class="card">
-        <mat-card-header class="card">
-          test2
-        </mat-card-header>
-      </mat-card>
-    </mat-gtid-title-content>
-
 
   </mat-grid-tile>
 </mat-grid-list>
