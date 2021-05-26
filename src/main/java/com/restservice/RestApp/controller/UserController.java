@@ -31,7 +31,7 @@ public class UserController {
     }
 
     @PostMapping("/users/getUserByDisplayName")
-    public ResponseEntity<User> getUserByDisplayName(String displayName){
+    public ResponseEntity getUserByDisplayName(String displayName){
         return ResponseEntity.ok(userRepository.findByDisplayName(displayName));
     }
 
