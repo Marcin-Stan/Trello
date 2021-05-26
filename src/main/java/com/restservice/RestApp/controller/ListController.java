@@ -30,13 +30,25 @@ public class ListController {
 
     @PostMapping("/list/getAll")
     public ResponseEntity getAllList(@RequestBody Board board){
-        return ResponseEntity.ok(listRepository.findAllByBoard(board));
+        return ResponseEntity.ok(listRepository.findAllByBoardAndIsArchivedIsFalse(board));
+    }
+
+    @PostMapping("/list/getAllArchived")
+    public ResponseEntity getAllArchived(@RequestBody Board board){
+        return ResponseEntity.ok(listRepository.findAllByBoardAndIsArchivedIsTrue(board));
     }
 
     @PostMapping("list/changeName")
     public ResponseEntity changeName(@RequestBody Long id, String name){
         List list = listRepository.getOne(id);
         list.setName(name);
+        return ResponseEntity.ok(listRepository.save(list));
+    }
+
+    @PostMapping("list/archived")
+    public ResponseEntity setArchived(@RequestBody Long id){
+        List list = listRepository.getOne(id);
+        list.setIsArchived(true);
         return ResponseEntity.ok(listRepository.save(list));
     }
 

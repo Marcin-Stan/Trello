@@ -9,9 +9,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 public class Application {
 
     public static void main(String[] args) {
-        System.out.println("{bcrypt}" + new BCryptPasswordEncoder().encode("dupa"));
         SpringApplication.run(Application.class, args);
     }
-
 
 }
