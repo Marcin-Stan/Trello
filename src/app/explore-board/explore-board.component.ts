@@ -14,6 +14,23 @@ export class ExploreBoardComponent implements OnInit {
   readonly ROOT_URL = 'https://pl-paw-2021.herokuapp.com/list/getAll';
   readonly ROOT_ADD_URL = 'https://pl-paw-2021.herokuapp.com/list/add';
   lists: IList[];
+  cardTemp = [{
+    id: 1,
+    list_id: 1,
+    title: "Witam",
+    description: "Zegnam",
+    order: 1,
+    archived: true
+  },
+    {
+      id: 1,
+      list_id: 1,
+      title: "chichua",
+      description: "AUUUUUUUU",
+      order: 1,
+      archived: true
+    }]
+
 
   constructor(private http: HttpClient, private dialogService: ChangeNameService) {
   }
@@ -41,7 +58,8 @@ export class ExploreBoardComponent implements OnInit {
     };
     this.http.post(this.ROOT_ADD_URL, this.userWithBoardAndToken.board, requestOptions).subscribe(data => {
       this.getLists();
-
+      this.lists[0].cards[0] = this.cardTemp[0];
+      this.lists[0].cards[1] = this.cardTemp[1];
     })
   }
 

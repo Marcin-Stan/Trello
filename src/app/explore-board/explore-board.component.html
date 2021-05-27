@@ -5,7 +5,12 @@
     <mat-grid-tile-header style="background-color: #5ba4cf; font-size: 20px">
       <a>{{list.name}}</a>
     </mat-grid-tile-header>
-
+    <div *ngFor="let card of list.cards">
+    <mat-card>
+      <mat-card-title>{{card.title}}</mat-card-title>
+      <mat-card-content>{{card.description}}</mat-card-content>
+    </mat-card>
+    </div>
   </mat-grid-tile>
 </mat-grid-list>
 <br><br>
