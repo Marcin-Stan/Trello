@@ -3,6 +3,8 @@ import {IUserWithBoardAndToken} from "../user-with-board-and-token";
 import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
 import {IList} from "../list";
 import {ChangeNameService} from "../change-name-service.service";
+import {IListWithCards} from "../list-with-cards";
+import {ICard} from "../card";
 
 @Component({
   selector: 'app-explore-board',
@@ -13,7 +15,10 @@ export class ExploreBoardComponent implements OnInit {
   @Input() userWithBoardAndToken: IUserWithBoardAndToken;
   readonly ROOT_URL = 'https://pl-paw-2021.herokuapp.com/list/getAll';
   readonly ROOT_ADD_URL = 'https://pl-paw-2021.herokuapp.com/list/add';
+  readonly GET_CARDS_FOR_LIST='';
   lists: IList[];
+  listsWithCards:IListWithCards[];
+  tempListWithCards:IListWithCards;
   cardTemp = [{
     id: 1,
     list_id: 1,
@@ -44,8 +49,26 @@ export class ExploreBoardComponent implements OnInit {
       .set("authorization", this.userWithBoardAndToken.userWithToken.token);
     this.http.post<IList[]>(this.ROOT_URL, this.userWithBoardAndToken.board, {headers: headers}).subscribe(data => {
       this.lists = data;
+      this.getCardsForLists();
     });
   }
+
+  getCardsForLists() {
+    for(let value of this.lists){
+      this.getCardsForList(value);
+    }
+  }
+
+  getCardsForList(list:IList){
+    const headers = new HttpHeaders()
+      .set("authorization", this.userWithBoardAndToken.userWithToken.token);
+    this.http.post<ICard[]>(this.GET_CARDS_FOR_LIST,list,{headers:headers}).subscribe(res=>{
+      this.tempListWithCards.list=list;
+      this.tempListWithCards.cards=res;
+    })
+  }
+
+
 
   addList(listName: string) {
     let params = new HttpParams();
@@ -58,8 +81,6 @@ export class ExploreBoardComponent implements OnInit {
     };
     this.http.post(this.ROOT_ADD_URL, this.userWithBoardAndToken.board, requestOptions).subscribe(data => {
       this.getLists();
-      this.lists[0].cards[0] = this.cardTemp[0];
-      this.lists[0].cards[1] = this.cardTemp[1];
     })
   }
 
