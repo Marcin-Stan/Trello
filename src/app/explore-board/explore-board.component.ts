@@ -15,10 +15,10 @@ export class ExploreBoardComponent implements OnInit {
   @Input() userWithBoardAndToken: IUserWithBoardAndToken;
   readonly ROOT_URL = 'https://pl-paw-2021.herokuapp.com/list/getAll';
   readonly ROOT_ADD_URL = 'https://pl-paw-2021.herokuapp.com/list/add';
-  readonly GET_CARDS_FOR_LIST='';
+  readonly GET_CARDS_FOR_LIST='https://pl-paw-2021.herokuapp.com/card/getAllCardsByList';
   lists: IList[];
-  listsWithCards:IListWithCards[];
-  tempListWithCards:IListWithCards;
+  listsWithCards:IListWithCards[]=[];
+  tempListWithCards:IListWithCards={list:null,cards:null};
   cardTemp = [{
     id: 1,
     list_id: 1,
@@ -45,6 +45,7 @@ export class ExploreBoardComponent implements OnInit {
   }
 
   getLists() {
+    this.listsWithCards=[];
     const headers = new HttpHeaders()
       .set("authorization", this.userWithBoardAndToken.userWithToken.token);
     this.http.post<IList[]>(this.ROOT_URL, this.userWithBoardAndToken.board, {headers: headers}).subscribe(data => {
@@ -63,8 +64,13 @@ export class ExploreBoardComponent implements OnInit {
     const headers = new HttpHeaders()
       .set("authorization", this.userWithBoardAndToken.userWithToken.token);
     this.http.post<ICard[]>(this.GET_CARDS_FOR_LIST,list,{headers:headers}).subscribe(res=>{
-      this.tempListWithCards.list=list;
-      this.tempListWithCards.cards=res;
+      let tmp;
+      tmp={
+        list:list,
+        cards:res,
+      }
+      console.log(tmp);
+      this.listsWithCards.push(tmp);
     })
   }
 
