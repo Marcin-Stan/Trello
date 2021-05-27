@@ -21,7 +21,6 @@ public class BoardUser {
 
     @ManyToOne
     @JoinColumn(name = "user_id",referencedColumnName = "id")
-    @JsonIgnore
     private User user;
 
     public BoardUser(Board board, User user) {

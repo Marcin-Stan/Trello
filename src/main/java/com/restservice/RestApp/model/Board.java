@@ -29,7 +29,6 @@ public class Board {
 
     @ManyToOne
     @JoinColumn(name = "owner_id",referencedColumnName = "id")
-    @JsonIgnore
     private User owner;
 
     @OneToMany(mappedBy = "board",cascade = CascadeType.ALL)
