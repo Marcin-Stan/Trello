@@ -24,6 +24,9 @@ public class Card {
     @Column(name="archived")
     private Boolean archived;
 
+    @Column(name="label")
+    private String label;
+
     @ManyToOne
     @JoinColumn(name = "list_id",referencedColumnName = "id")
     @JsonIgnore

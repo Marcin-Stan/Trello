@@ -33,8 +33,25 @@ public class CardController {
         return ResponseEntity.ok(cardRepository.findAllByList(list));
     }
 
+    @PostMapping("card/changeTitle")
+    public ResponseEntity<Card> changeTitle(@RequestBody Long id, String title){
+        Card card = cardRepository.getOne(id);
+        card.setTitle(title);
+        return ResponseEntity.ok(cardRepository.save(card));
+    }
 
+    @PostMapping("card/changeDescription")
+    public ResponseEntity<Card> changeDescription(@RequestBody Long id, String description){
+        Card card = cardRepository.getOne(id);
+        card.setDescription(description);
+        return ResponseEntity.ok(cardRepository.save(card));
+    }
 
-
+    @PostMapping("card/changeLabel")
+    public ResponseEntity<Card> changeLabel(@RequestBody Long id, String label){
+        Card card = cardRepository.getOne(id);
+        card.setLabel(label);
+        return ResponseEntity.ok(cardRepository.save(card));
+    }
 
 }
