@@ -1,8 +1,6 @@
 package com.restservice.RestApp.controller;
 
-import com.restservice.RestApp.model.Board;
-import com.restservice.RestApp.model.BoardUser;
-import com.restservice.RestApp.model.List;
+import com.restservice.RestApp.model.*;
 import com.restservice.RestApp.repository.CardRepository;
 import com.restservice.RestApp.repository.ListRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,13 +19,20 @@ public class CardController {
     @Autowired
     CardRepository cardRepository;
 
-    /*
+    @Autowired
+    ListRepository listRepository;
+
     @PostMapping("/cards/add")
-    public ResponseEntity addNewBoard(@Valid @RequestBody List list){
-        boardRepository.save(board);
-        BoardUser boardUser = new BoardUser(board,board.getOwner());
-        return ResponseEntity.ok( boardUserRepository.save(boardUser));
+    public ResponseEntity<Card> addNewCard(@RequestBody Long idList, String title){
+        Card card = new Card(title,listRepository.findListById(idList));
+        return ResponseEntity.ok( cardRepository.save(card));
     }
 
-     */
+    @PostMapping("/card/getAllCardsByList")
+    public ResponseEntity<java.util.List<Card>> getAllCardByList(@RequestBody List list){
+        return ResponseEntity.ok(cardRepository.findAllByList(list));
+    }
+
+
+
 }

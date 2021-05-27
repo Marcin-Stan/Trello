@@ -21,15 +21,18 @@ public class Card {
     @Column(name="description")
     private String description;
 
-    @Column(name = "order")
-    private Integer order;
-
     @Column(name="archived")
     private Boolean archived;
 
     @ManyToOne
     @JoinColumn(name = "list_id",referencedColumnName = "id")
+    @JsonIgnore
     private List list;
 
+    public Card(String title, List list) {
+        this.title = title;
+        this.list = list;
+    }
 
+    public Card(){}
 }

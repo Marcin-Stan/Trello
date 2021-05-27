@@ -24,9 +24,7 @@ public class List {
     private Board board;
 
     @OneToMany(mappedBy = "list",cascade = CascadeType.ALL)
-    @JsonIgnore
     private java.util.List<Card> cardList;
-
 
     @Column(name = "archived")
     private Boolean isArchived;
