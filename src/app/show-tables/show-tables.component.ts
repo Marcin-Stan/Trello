@@ -21,12 +21,13 @@ export class ShowTablesComponent implements OnInit {
   readonly ADD_BOARD_URL = 'https://pl-paw-2021.herokuapp.com/boards/add';
   readonly GET_NICKNAMES_URL = 'https://pl-paw-2021.herokuapp.com/users';
   readonly ROOT_URL_change_name = 'https://pl-paw-2021.herokuapp.com/boardChangeName';
+  readonly CHECK_IS_OWNER='https://pl-paw-2021.herokuapp.com/boards/checkOwner';
   postData = {};
 
 
   constructor(private http: HttpClient, private dialogService: ChangeNameService, private dialogService2: ChangeNameService) {
   }
-
+  userIsOwner:boolean;
   listOfBoards:IBoardUser[];
   @Input() userWithToken :IUserWithToken;
 
@@ -68,7 +69,9 @@ export class ShowTablesComponent implements OnInit {
   contextMenuPosition = {x: '0px', y: '0px'};
 
   onContextMenu(event: MouseEvent, item: IBoard) {
+    this.userIsOwner=false;
     event.preventDefault();
+    this.checkIsOwner(item);
     this.contextMenuPosition.x = event.clientX + 'px';
     this.contextMenuPosition.y = event.clientY + 'px';
     this.contextMenu.menuData = {'item': item};
@@ -83,7 +86,7 @@ export class ShowTablesComponent implements OnInit {
   }
 
   onContextMenuAction2(item: IBoard) {
-    this.nameChange(item);
+      this.nameChange(item);
   }
 
   nameChange(item: IBoard) {
@@ -138,6 +141,23 @@ export class ShowTablesComponent implements OnInit {
     });
   }
 
+  checkIsOwner(board:IBoard){
+    const headers = new HttpHeaders()
+      .set("authorization", this.userWithToken.token);
+    let postData={
+      id:board.id,
+      owner:{
+        id:this.userWithToken.user.id
+      }
+    }
+    this.http.post<boolean>(this.CHECK_IS_OWNER,postData,{headers:headers}).subscribe(res=>{
+      if(res){
+        this.userIsOwner=true;
+      }else{
+        this.userIsOwner=false;
+      }
+    })
+  }
 }
 
 

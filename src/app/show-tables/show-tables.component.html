@@ -15,7 +15,7 @@
         <mat-menu #contextMenu="matMenu">
           <ng-template matMenuContent let-item="item">
             <button mat-menu-item (click)="onContextMenuAction1(item)">Otwórz</button>
-            <button mat-menu-item (click)="onContextMenuAction2(item)">Zmień nazwę</button>
+            <button mat-menu-item (click)="onContextMenuAction2(item)" *ngIf="userIsOwner">Zmień nazwę</button>
           </ng-template>
         </mat-menu>
       </mat-grid-tile>

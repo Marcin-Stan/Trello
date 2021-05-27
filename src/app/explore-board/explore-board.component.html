@@ -1,9 +1,9 @@
 <h1>Tablica {{this.userWithBoardAndToken.board.name}}</h1><br>
 
 <mat-grid-list cols="4" [gutterSize]="'10px'" style="height:80%">
-  <mat-grid-tile *ngFor="let list of lists" style="background-color: white; padding: 20px; height:100%">
+  <mat-grid-tile *ngFor="let listWithCards of listsWithCards" style="background-color: white; padding: 20px; height:100%">
     <mat-grid-tile-header style="background-color: #5ba4cf; font-size: 20px">
-      <a>{{list.name}}</a>
+      <a>{{listWithCards.list.name}}</a>
     </mat-grid-tile-header>
     <div *ngFor="let card of list.cards">
     <mat-card>
