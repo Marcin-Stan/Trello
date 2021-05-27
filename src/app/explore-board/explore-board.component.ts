@@ -16,6 +16,7 @@ export class ExploreBoardComponent implements OnInit {
   readonly ROOT_URL = 'https://pl-paw-2021.herokuapp.com/list/getAll';
   readonly ROOT_ADD_URL = 'https://pl-paw-2021.herokuapp.com/list/add';
   readonly GET_CARDS_FOR_LIST='https://pl-paw-2021.herokuapp.com/card/getAllCardsByList';
+  readonly CHANGE_CARD_NAME='https://pl-paw-2021.herokuapp.com/cards/add';
   lists: IList[];
   listsWithCards:IListWithCards[]=[];
   tempListWithCards:IListWithCards={list:null,cards:null};
@@ -105,5 +106,35 @@ export class ExploreBoardComponent implements OnInit {
         this.addList(confirmed);
       }
     });
+  }
+
+  addCardToList(list:IList,name:string){
+    let params = new HttpParams();
+    params = params.set('title', name);
+    const headers = new HttpHeaders()
+      .set("authorization", this.userWithBoardAndToken.userWithToken.token);
+    const requestOptions = {
+      headers: headers,
+      params: params
+    };
+    this.http.post(this.CHANGE_CARD_NAME,list.id,requestOptions).subscribe(res=>{
+      this.getLists();
+      }
+    );
+  }
+
+  changeListName(list:IList,name:string){
+    let params = new HttpParams();
+    params = params.set('name', name);
+    const headers = new HttpHeaders()
+      .set("authorization", this.userWithBoardAndToken.userWithToken.token);
+    const requestOptions = {
+      headers: headers,
+      params: params
+    };
+    this.http.post(this.CHANGE_CARD_NAME,list.id,requestOptions).subscribe(res=>{
+        this.getLists();
+      }
+    );
   }
 }

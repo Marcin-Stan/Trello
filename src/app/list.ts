@@ -1,7 +1,7 @@
 import {ICard} from "./card";
 
 export interface IList {
-  if: number;
+  id: number;
   name: string;
 
 }
