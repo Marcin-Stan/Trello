@@ -24,6 +24,7 @@ export class ExploreBoardComponent implements OnInit {
   readonly ADD_CARD='https://pl-paw-2021.herokuapp.com/cards/add';
   readonly CHANGE_CARD_TITLE='https://pl-paw-2021.herokuapp.com/card/changeTitle';
   readonly CHANGE_CARD_DESCRIPTION='https://pl-paw-2021.herokuapp.com/card/changeDescription';
+  readonly SET_LIST_ARCHIVED = 'https://pl-paw-2021.herokuapp.com/list/archived';
   lists: IList[];
   listsWithCards:IListWithCards[]=[];
   tempListWithCards:IListWithCards={list:null,cards:null};
@@ -184,7 +185,7 @@ export class ExploreBoardComponent implements OnInit {
   }
 
   archiveListButton(list: IList) {
-    //wywołanie metodu archiwizuj liste
+    this.setListAsArchived(list);
   }
 
   addCardButton(list: IList) {
@@ -242,5 +243,13 @@ export class ExploreBoardComponent implements OnInit {
 
   addLabel1(card: ICard) {
     console.log("AAAAAAAAAAAAAA");
+  }
+
+  setListAsArchived(list:IList){
+    const headers = new HttpHeaders()
+    .set("authorization", this.userWithBoardAndToken.userWithToken.token);
+       this.http.post(this.SET_LIST_ARCHIVED,list.id,{headers:headers}).subscribe(res=>{
+       this.getLists();
+       });
   }
 }
