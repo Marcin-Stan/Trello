@@ -5,4 +5,5 @@ export interface ICard {
   description: any;
   order: number;
   archived: boolean;
+  label:string;
 }
