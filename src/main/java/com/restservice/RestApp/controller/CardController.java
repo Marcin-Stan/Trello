@@ -25,6 +25,7 @@ public class CardController {
     @PostMapping("/cards/add")
     public ResponseEntity<Card> addNewCard(@RequestBody Long idList, String title){
         Card card = new Card(title,listRepository.findListById(idList));
+        card.setIsArchived(false);
         return ResponseEntity.ok( cardRepository.save(card));
     }
 
