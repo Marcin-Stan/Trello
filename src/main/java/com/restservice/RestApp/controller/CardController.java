@@ -61,4 +61,10 @@ public class CardController {
         return ResponseEntity.ok(cardRepository.save(card));
     }
 
+    @PostMapping("/card/archived")
+    public ResponseEntity<Card> setArchived(@RequestBody Long id){
+        Card card = cardRepository.getOne(id);
+        card.setArchived(true);
+        return ResponseEntity.ok(cardRepository.save(card));
+    }
 }
