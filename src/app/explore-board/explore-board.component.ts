@@ -1,10 +1,14 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {IUserWithBoardAndToken} from "../user-with-board-and-token";
 import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
 import {IList} from "../list";
 import {ChangeNameService} from "../change-name-service.service";
 import {IListWithCards} from "../list-with-cards";
 import {ICard} from "../card";
+import {IBoard} from "../board";
+import {MatMenuTrigger} from "@angular/material/menu";
+import {MatIconModule} from '@angular/material/icon';
+
 
 @Component({
   selector: 'app-explore-board',
@@ -20,22 +24,11 @@ export class ExploreBoardComponent implements OnInit {
   lists: IList[];
   listsWithCards:IListWithCards[]=[];
   tempListWithCards:IListWithCards={list:null,cards:null};
-  cardTemp = [{
-    id: 1,
-    list_id: 1,
-    title: "Witam",
-    description: "Zegnam",
-    order: 1,
-    archived: true
-  },
-    {
-      id: 1,
-      list_id: 1,
-      title: "chichua",
-      description: "AUUUUUUUU",
-      order: 1,
-      archived: true
-    }]
+  contextMenuPosition = {x: '0px', y: '0px'};
+  private userIsOwner: boolean;
+  @ViewChild(MatMenuTrigger)
+  contextMenu: MatMenuTrigger;
+  menu: any;
 
 
   constructor(private http: HttpClient, private dialogService: ChangeNameService) {
@@ -136,5 +129,24 @@ export class ExploreBoardComponent implements OnInit {
         this.getLists();
       }
     );
+  }
+
+  onContextMenuAction1(item: any) {
+
+  }
+
+  onContextMenuAction2(item: any) {
+
+  }
+
+  onContextMenu(event: MouseEvent, item: IListWithCards) {
+
+    event.preventDefault();
+
+    this.contextMenuPosition.x = event.clientX + 'px';
+    this.contextMenuPosition.y = event.clientY + 'px';
+    this.contextMenu.menuData = {'item': item};
+    this.contextMenu.menu.focusFirstItem('mouse');
+    this.contextMenu.openMenu();
   }
 }

@@ -1,16 +1,29 @@
 <h1>Tablica {{this.userWithBoardAndToken.board.name}}</h1><br>
 
-<mat-grid-list cols="4" [gutterSize]="'10px'" style="height:80%">
-  <mat-grid-tile *ngFor="let listWithCards of listsWithCards" style="background-color: white; padding: 20px; height:100%">
+<mat-grid-list cols="4" [gutterSize]="'10px'">
+  <mat-grid-tile [rowspan]="2" [colspan]="1" *ngFor="let listWithCards of listsWithCards" style="background-color: white; padding: 20px;">
     <mat-grid-tile-header style="background-color: #5ba4cf; font-size: 20px">
       <a>{{listWithCards.list.name}}</a>
+      <button style="float:right; text-align: right" mat-icon-button [matMenuTriggerFor]="menu">
+        <mat-icon>more_vert</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item>
+          <span>Zmień nazwę</span>
+        </button>
+        <button mat-menu-item>
+          <span>Archiwizuj</span>
+        </button>
+      </mat-menu>
     </mat-grid-tile-header>
-    <div *ngFor="let card of listWithCards.cards">
-    <mat-card>
+
+    <div id="karta">
+    <mat-card *ngFor="let card of listWithCards.cards">
       <mat-card-title>{{card.title}}</mat-card-title>
       <mat-card-content>{{card.description}}</mat-card-content>
     </mat-card>
     </div>
+
   </mat-grid-tile>
 </mat-grid-list>
 <br><br>

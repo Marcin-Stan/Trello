@@ -20,6 +20,7 @@ import {MatCardModule} from "@angular/material/card";
 import {MatOptionModule} from "@angular/material/core";
 import {MatAutocompleteModule} from "@angular/material/autocomplete";
 import { AddUserToBoardComponent } from './add-user-to-board/add-user-to-board.component';
+import {MatIconModule} from "@angular/material/icon";
 
 
 @NgModule({
@@ -46,7 +47,8 @@ import { AddUserToBoardComponent } from './add-user-to-board/add-user-to-board.c
     MatCardModule,
     MatOptionModule,
     MatAutocompleteModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatIconModule
 
   ],
   providers: [ChangeNameService

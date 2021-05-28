@@ -1,6 +1,6 @@
 .lists {
   width: 1000px;
-  height: 800px;
+  height: 1080px;
 }
 
 .card {
@@ -16,6 +16,12 @@
   alignment: center;
   color: black;
 }
+
 mat-grid-tile {
   border-radius: 10px;
+}
+
+#karta {
+  text-align: center;
+  width: 100%;
 }
