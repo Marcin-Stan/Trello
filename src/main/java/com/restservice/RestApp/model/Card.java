@@ -22,7 +22,7 @@ public class Card {
     private String description;
 
     @Column(name="label")
-    private String label;
+    private int label;
 
     @Column(name = "archived")
     private Boolean isArchived;
