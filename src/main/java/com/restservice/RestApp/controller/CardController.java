@@ -30,7 +30,7 @@ public class CardController {
 
     @PostMapping("/card/getAllCardsByList")
     public ResponseEntity<java.util.List<Card>> getAllCardByList(@RequestBody List list){
-        return ResponseEntity.ok(cardRepository.findAllByList(list));
+        return ResponseEntity.ok(cardRepository.findAllByListAndIsArchivedIsFalse(list));
     }
 
     @PostMapping("card/changeTitle")
@@ -64,7 +64,7 @@ public class CardController {
     @PostMapping("/card/archived")
     public ResponseEntity<Card> setArchived(@RequestBody Long id){
         Card card = cardRepository.getOne(id);
-        card.setArchived(true);
+        card.setIsArchived(true);
         return ResponseEntity.ok(cardRepository.save(card));
     }
 }

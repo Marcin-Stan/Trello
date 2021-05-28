@@ -21,11 +21,11 @@ public class Card {
     @Column(name="description")
     private String description;
 
-    @Column(name="archived")
-    private Boolean archived;
-
     @Column(name="label")
     private String label;
+
+    @Column(name = "archived")
+    private Boolean isArchived;
 
     @ManyToOne
     @JoinColumn(name = "list_id",referencedColumnName = "id")
