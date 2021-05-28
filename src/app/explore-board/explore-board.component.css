@@ -22,6 +22,14 @@ mat-grid-tile {
 }
 
 #karta {
+  vertical-align: top !important;
   text-align: center;
   width: 100%;
+  align-items: center;
+
 }
+
+#lista {
+
+}
+

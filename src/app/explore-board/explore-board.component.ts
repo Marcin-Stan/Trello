@@ -29,9 +29,12 @@ export class ExploreBoardComponent implements OnInit {
   @ViewChild(MatMenuTrigger)
   contextMenu: MatMenuTrigger;
   menu: any;
+  menuCard: any;
+  etykiety: any;
 
 
-  constructor(private http: HttpClient, private dialogService: ChangeNameService) {
+  constructor(private http: HttpClient,
+              private dialogService: ChangeNameService) {
   }
 
   ngOnInit(): void {
@@ -131,22 +134,80 @@ export class ExploreBoardComponent implements OnInit {
     );
   }
 
-  onContextMenuAction1(item: any) {
-
+  changeListNameButton(list: IList) {
+    const options = {
+      title: 'Zmiana nazwy listy',
+      message: 'Podaj nową nazwę listy: ',
+      cancelText: 'Anuluj',
+      confirmText: 'Potwierdź'
+    };
+    this.dialogService.open(options);
+    this.dialogService.confirmed().subscribe(confirmed => {
+      if (!confirmed.isEmpty) {
+        console.log(confirmed);
+        this.changeListName(list, confirmed);
+      }
+    });
   }
 
-  onContextMenuAction2(item: any) {
-
+  archiveListButton(list: IList) {
+    //wywołanie metodu archiwizuj liste
   }
 
-  onContextMenu(event: MouseEvent, item: IListWithCards) {
+  addCardButton(list: IList) {
+    const options = {
+      title: 'Dodawanie karty',
+      message: 'Podaj nazwę karty: ',
+      cancelText: 'Anuluj',
+      confirmText: 'Potwierdź'
+    };
+    this.dialogService.open(options);
+    this.dialogService.confirmed().subscribe(confirmed => {
+      if (!confirmed.isEmpty) {
+        console.log(confirmed);
+        this.addCardToList(list, confirmed);
+      }
+    });
+  }
 
-    event.preventDefault();
+  changeCardNameButton(card: ICard) {
+    const options = {
+      title: 'Zmiana nazwy karty',
+      message: 'Podaj nową nazwę karty: ',
+      cancelText: 'Anuluj',
+      confirmText: 'Potwierdź'
+    };
+    this.dialogService.open(options);
+    this.dialogService.confirmed().subscribe(confirmed => {
+      if (!confirmed.isEmpty) {
+        console.log(confirmed);
+        //TUTAJ DODAĆ WYWOŁANIE METODY ZMIEŃ NAZWE KARTY
+      }
+    });
+  }
 
-    this.contextMenuPosition.x = event.clientX + 'px';
-    this.contextMenuPosition.y = event.clientY + 'px';
-    this.contextMenu.menuData = {'item': item};
-    this.contextMenu.menu.focusFirstItem('mouse');
-    this.contextMenu.openMenu();
+  changeCardDescriptionButton(card: ICard) {
+    const options = {
+      title: 'Zmiana opisu karty',
+      message: 'Podaj opis karty: ',
+      cancelText: 'Anuluj',
+      confirmText: 'Potwierdź'
+    };
+    this.dialogService.open(options);
+    this.dialogService.confirmed().subscribe(confirmed => {
+      if (!confirmed.isEmpty) {
+        console.log(confirmed);
+        //TUTAJ DODAĆ WYWOŁANIE METODY ZMIEŃ OPIS KARTY
+      }
+    });
+  }
+
+  archiveCardButton(card: ICard) {
+    //wywołanie metodu archiwizuj karte
+  }
+
+
+  addLabel1(card: ICard) {
+    console.log("AAAAAAAAAAAAAA");
   }
 }
