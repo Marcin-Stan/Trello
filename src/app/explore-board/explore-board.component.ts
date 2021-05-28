@@ -20,7 +20,10 @@ export class ExploreBoardComponent implements OnInit {
   readonly ROOT_URL = 'https://pl-paw-2021.herokuapp.com/list/getAll';
   readonly ROOT_ADD_URL = 'https://pl-paw-2021.herokuapp.com/list/add';
   readonly GET_CARDS_FOR_LIST='https://pl-paw-2021.herokuapp.com/card/getAllCardsByList';
-  readonly CHANGE_CARD_NAME='https://pl-paw-2021.herokuapp.com/cards/add';
+  readonly CHANGE_LIST_NAME='https://pl-paw-2021.herokuapp.com/list/changeName';
+  readonly ADD_CARD='https://pl-paw-2021.herokuapp.com/cards/add';
+  readonly CHANGE_CARD_TITLE='https://pl-paw-2021.herokuapp.com/card/changeTitle';
+  readonly CHANGE_CARD_DESCRIPTION='https://pl-paw-2021.herokuapp.com/card/changeDescription';
   lists: IList[];
   listsWithCards:IListWithCards[]=[];
   tempListWithCards:IListWithCards={list:null,cards:null};
@@ -113,7 +116,7 @@ export class ExploreBoardComponent implements OnInit {
       headers: headers,
       params: params
     };
-    this.http.post(this.CHANGE_CARD_NAME,list.id,requestOptions).subscribe(res=>{
+    this.http.post(this.ADD_CARD,list.id,requestOptions).subscribe(res=>{
       this.getLists();
       }
     );
@@ -128,11 +131,41 @@ export class ExploreBoardComponent implements OnInit {
       headers: headers,
       params: params
     };
-    this.http.post(this.CHANGE_CARD_NAME,list.id,requestOptions).subscribe(res=>{
+    this.http.post(this.CHANGE_LIST_NAME,list.id,requestOptions).subscribe(res=>{
         this.getLists();
       }
     );
   }
+
+  changeCardTitle(card:ICard, title:string){
+  let params = new HttpParams();
+      params = params.set('title', title);
+      const headers = new HttpHeaders()
+        .set("authorization", this.userWithBoardAndToken.userWithToken.token);
+      const requestOptions = {
+        headers: headers,
+        params: params
+      };
+      this.http.post(this.CHANGE_CARD_TITLE,card.id,requestOptions).subscribe(res=>{
+          this.getLists();
+        }
+      );
+  }
+
+  changeCardDescription(card:ICard, description:string){
+    let params = new HttpParams();
+        params = params.set('description', description);
+        const headers = new HttpHeaders()
+          .set("authorization", this.userWithBoardAndToken.userWithToken.token);
+        const requestOptions = {
+          headers: headers,
+          params: params
+        };
+        this.http.post(this.CHANGE_CARD_DESCRIPTION,card.id,requestOptions).subscribe(res=>{
+            this.getLists();
+          }
+        );
+    }
 
   changeListNameButton(list: IList) {
     const options = {
@@ -181,7 +214,7 @@ export class ExploreBoardComponent implements OnInit {
     this.dialogService.confirmed().subscribe(confirmed => {
       if (!confirmed.isEmpty) {
         console.log(confirmed);
-        //TUTAJ DODAĆ WYWOŁANIE METODY ZMIEŃ NAZWE KARTY
+        this.changeCardTitle(card,confirmed);
       }
     });
   }
@@ -197,7 +230,7 @@ export class ExploreBoardComponent implements OnInit {
     this.dialogService.confirmed().subscribe(confirmed => {
       if (!confirmed.isEmpty) {
         console.log(confirmed);
-        //TUTAJ DODAĆ WYWOŁANIE METODY ZMIEŃ OPIS KARTY
+        this.changeCardDescription(card,confirmed);
       }
     });
   }
