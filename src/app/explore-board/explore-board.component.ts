@@ -25,6 +25,10 @@ export class ExploreBoardComponent implements OnInit {
   readonly CHANGE_CARD_TITLE='https://pl-paw-2021.herokuapp.com/card/changeTitle';
   readonly CHANGE_CARD_DESCRIPTION='https://pl-paw-2021.herokuapp.com/card/changeDescription';
   readonly SET_LIST_ARCHIVED = 'https://pl-paw-2021.herokuapp.com/list/archived';
+  readonly CHANGE_LIST_OF_CARD='https://pl-paw-2021.herokuapp.com/card/changeList';
+  readonly SET_CARD_ARCHIVED = 'https://pl-paw-2021.herokuapp.com/card/archived';
+  readonly SET_CARD_LABEL = 'https://pl-paw-2021.herokuapp.com/card/changeLabel';
+
   lists: IList[];
   listsWithCards:IListWithCards[]=[];
   tempListWithCards:IListWithCards={list:null,cards:null};
@@ -238,7 +242,7 @@ export class ExploreBoardComponent implements OnInit {
   }
 
   archiveCardButton(card: ICard) {
-    //wywołanie metodu archiwizuj karte
+    this.setCardAsArchived(card);
   }
 
 
@@ -254,7 +258,44 @@ export class ExploreBoardComponent implements OnInit {
        });
   }
 
+  setCardAsArchived(card:ICard){
+      const headers = new HttpHeaders()
+      .set("authorization", this.userWithBoardAndToken.userWithToken.token);
+         this.http.post(this.SET_CARD_ARCHIVED,card.id,{headers:headers}).subscribe(res=>{
+         this.getLists();
+         });
+    }
+
   moveCardToList(idCard: number, idList: number) {
     console.log(idCard, idList);
+    this.changeListOfCard(idCard,idList);
+  }
+
+  changeListOfCard(idCard:number, idList:number){
+    const headers = new HttpHeaders()
+    .set("authorization", this.userWithBoardAndToken.userWithToken.token);
+    let params = new HttpParams();
+        params = params.set('cardId', idCard.toString());
+    const requestOptions = {
+          headers: headers,
+          params: params
+        };
+
+    this.http.post(this.CHANGE_LIST_OF_CARD,idList,requestOptions).subscribe(res=>{
+    this.getLists();
+    });
+  }
+  changeCardLabel(card:ICard, label:string){
+  const headers = new HttpHeaders()
+      .set("authorization", this.userWithBoardAndToken.userWithToken.token);
+  let params = new HttpParams();
+          params = params.set('label', label);
+     const requestOptions = {
+            headers: headers,
+            params: params
+          };
+  this.http.post(this.SET_CARD_LABEL,card.id,requestOptions).subscribe(res=>{
+  this.getLists();
+  })
   }
 }
