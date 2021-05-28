@@ -29,8 +29,11 @@ public class Card {
 
     @ManyToOne
     @JoinColumn(name = "list_id",referencedColumnName = "id")
-    @JsonIgnore
     private List list;
+
+    @OneToMany(mappedBy = "card",cascade = CascadeType.ALL)
+    @JsonIgnore
+    private java.util.List<Comment> commentList;
 
     public Card(String title, List list) {
         this.title = title;

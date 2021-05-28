@@ -37,13 +37,17 @@ public class User {
     @Column(name = "display_name")
     private String displayName;
 
-    @OneToMany(mappedBy = "owner")
     @JsonIgnore
+    @OneToMany(mappedBy = "owner")
     private List<Board> boardList;
 
-    @OneToMany(mappedBy = "user")
     @JsonIgnore
+    @OneToMany(mappedBy = "user")
     private List<BoardUser> boardUsersList;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
+    private List<Comment> commentList;
 
     public User() {
     }

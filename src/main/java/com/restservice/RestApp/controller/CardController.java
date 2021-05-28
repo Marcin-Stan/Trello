@@ -54,4 +54,11 @@ public class CardController {
         return ResponseEntity.ok(cardRepository.save(card));
     }
 
+    @PostMapping("card/changeList")
+    public ResponseEntity<Card> changeList(@RequestBody Long listId, Long cardId){
+        Card card = cardRepository.getOne(cardId);
+        card.setList(listRepository.findListById(listId));
+        return ResponseEntity.ok(cardRepository.save(card));
+    }
+
 }
