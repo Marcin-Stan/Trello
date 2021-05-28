@@ -35,6 +35,7 @@ export class ExploreBoardComponent implements OnInit {
   menu: any;
   menuCard: any;
   etykiety: any;
+  innekarty: any;
 
 
   constructor(private http: HttpClient,
@@ -251,5 +252,9 @@ export class ExploreBoardComponent implements OnInit {
        this.http.post(this.SET_LIST_ARCHIVED,list.id,{headers:headers}).subscribe(res=>{
        this.getLists();
        });
+  }
+
+  moveCardToList(idCard: number, idList: number) {
+    console.log(idCard, idList);
   }
 }

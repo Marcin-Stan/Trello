@@ -1,11 +1,10 @@
 <h1>Tablica {{this.userWithBoardAndToken.board.name}}</h1><br>
 
 <mat-grid-list cols="4" [gutterSize]="'10px'">
-  <div id="lista">
   <mat-grid-tile [rowspan]="2" [colspan]="1" *ngFor="let listWithCards of listsWithCards" style="background-color: white; overflow: scroll">
-    <mat-grid-tile-header style="background-color: #5ba4cf; font-size: 20px">
+    <mat-grid-tile-header style="background-color: #5ba4cf; font-size: 16px">
       <a>{{listWithCards.list.name}}</a>
-      <button style="float:right; text-align: right" mat-icon-button [matMenuTriggerFor]="menu">
+      <button style="float:right; text-align:right" mat-icon-button [matMenuTriggerFor]="menu">
         <mat-icon>more_vert</mat-icon>
       </button>
       <mat-menu #menu="matMenu">
@@ -50,9 +49,16 @@
                 <span>Mało ważne</span>
               </button>
             </mat-menu>
-
           </button>
+          <button mat-menu-item [mat-menu-trigger-for]="innekarty">
+          </button>
+            <mat-menu #innekarty="matMenu">
+            <button *ngFor="let listWithCardsTemp of listsWithCards" mat-menu-item (click)="moveCardToList(card.id, listWithCardsTemp.list.id)">
+              <span>{{listWithCardsTemp.list.name}}</span>
+            </button>
 
+
+            </mat-menu>
         </mat-menu>
       </mat-card-title>
       <mat-card-content>{{card.description}}</mat-card-content>
@@ -60,7 +66,6 @@
     </div>
 
   </mat-grid-tile>
-  </div>
 </mat-grid-list>
 <br><br>
 <div>

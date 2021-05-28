@@ -8,6 +8,7 @@
   width: 80%;
   padding: 10px;
   color: lightblue;
+  alignment: top;
 }
 
 .cardHeader {
@@ -22,14 +23,12 @@ mat-grid-tile {
 }
 
 #karta {
-  vertical-align: top !important;
-  text-align: center;
-  width: 100%;
-  align-items: center;
+  display: table; width:100%;
+  text-align: start;
 
 }
 
 #lista {
-
+ height: 95%;
 }
 
