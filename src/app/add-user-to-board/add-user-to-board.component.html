@@ -2,24 +2,24 @@
 <br>
 <mat-card *ngIf="userIsOwner">
   <mat-card-content>
-<form class="example-form">
-  <h3><b> Dodaj użytkownika do tablicy </b></h3>
-  <mat-form-field class="example-full-width" appearance="outline">
-    <mat-label>Użytkownik</mat-label>
-    <input type="text"
-           #selectedUser
-           placeholder="Wybierz użytkownika"
-           aria-label="Użytkownik"
-           matInput
-           [formControl]="myControl"
-           [matAutocomplete]="auto">
-    <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-      <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
-        {{option}}
-      </mat-option>
-    </mat-autocomplete>
-  </mat-form-field>
-</form>
+    <form class="example-form">
+      <h3><b> Dodaj użytkownika do tablicy </b></h3>
+      <mat-form-field class="example-full-width" appearance="outline">
+        <mat-label>Użytkownik</mat-label>
+        <input type="text"
+               #selectedUser
+               placeholder="Wybierz użytkownika"
+               aria-label="Użytkownik"
+               matInput
+               [formControl]="myControl"
+               [matAutocomplete]="auto">
+        <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+          <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+            {{option}}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+    </form>
   </mat-card-content>
   <mat-card-actions>
     <button mat-raised-button (click)="addUserToBoardUser(selectedUser.value)">Dodaj</button>

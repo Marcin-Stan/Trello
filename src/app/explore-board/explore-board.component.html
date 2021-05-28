@@ -1,7 +1,8 @@
 <h1>Tablica {{this.userWithBoardAndToken.board.name}}</h1><br>
 
 <mat-grid-list cols="4" [gutterSize]="'10px'">
-  <mat-grid-tile [rowspan]="2" [colspan]="1" *ngFor="let listWithCards of listsWithCards" style="background-color: white; overflow: scroll">
+  <mat-grid-tile [rowspan]="2" [colspan]="1" *ngFor="let listWithCards of listsWithCards"
+                 style="background-color: white; overflow: scroll">
     <mat-grid-tile-header style="background-color: #5ba4cf; font-size: 16px">
       <a>{{listWithCards.list.name}}</a>
       <button style="float:right; text-align:right" mat-icon-button [matMenuTriggerFor]="menu">
@@ -21,49 +22,53 @@
     </mat-grid-tile-header>
 
     <div id="karta">
-    <mat-card *ngFor="let card of listWithCards.cards">
-      <mat-card-title>{{card.title}}
-        <button style="float:right; text-align: right" mat-icon-button [matMenuTriggerFor]="menuCard">
-          <mat-icon>more_vert</mat-icon>
-        </button>
-        <mat-menu #menuCard="matMenu">
-          <button mat-menu-item (click)="changeCardNameButton(card)">
-            <span>Zmień nazwę</span>
+      <mat-card *ngFor="let card of listWithCards.cards" [ngStyle]="{'background-color': getCardLabelColor(card)}">
+        <mat-card-title>{{card.title}}
+          <button style="float:right; text-align: right" mat-icon-button [matMenuTriggerFor]="menuCard">
+            <mat-icon>more_vert</mat-icon>
           </button>
-          <button mat-menu-item (click)="changeCardDescriptionButton(card)">
-            <span>Zmień opis</span>
-          </button>
-          <button mat-menu-item (click)="archiveCardButton(card)">
-            <span>Archiwizuj</span>
-          </button>
-          <button  mat-menu-item [matMenuTriggerFor]="etykiety">
-            <span>Etykiety</span>
-            <mat-menu #etykiety="matMenu">
-              <button mat-menu-item (click)="addLabel1(card)">
-                <span>Ważne</span>
-              </button>
-              <button mat-menu-item>
-                <span>Warto pamiętać</span>
-              </button>
-              <button mat-menu-item>
-                <span>Mało ważne</span>
-              </button>
-            </mat-menu>
-          </button>
-          <button mat-menu-item [mat-menu-trigger-for]="innekarty">
-            <span>Przenieś do listy</span>
-          </button>
-            <mat-menu #innekarty="matMenu">
-            <button *ngFor="let listWithCardsTemp of listsWithCards" mat-menu-item (click)="moveCardToList(card.id, listWithCardsTemp.list.id)">
-              <span>{{listWithCardsTemp.list.name}}</span>
+          <mat-menu #menuCard="matMenu">
+            <button mat-menu-item (click)="changeCardNameButton(card)">
+              <span>Zmień nazwę</span>
             </button>
+            <button mat-menu-item (click)="changeCardDescriptionButton(card)">
+              <span>Zmień opis</span>
+            </button>
+            <button mat-menu-item (click)="archiveCardButton(card)">
+              <span>Archiwizuj</span>
+            </button>
+            <button mat-menu-item [matMenuTriggerFor]="etykiety">
+              <span>Etykiety</span>
+              <mat-menu #etykiety="matMenu">
+                <button mat-menu-item (click)="addLabel1(card)">
+                  <span>Ważne</span>
+                </button>
+                <button mat-menu-item (click)="addLabel2(card)">
+                  <span>Warto pamiętać</span>
+                </button>
+                <button mat-menu-item (click)="addLabel3(card)">
+                  <span>Mało ważne</span>
+                </button>
+                <button mat-menu-item (click)="addLabel0(card)">
+                  <span>Brak</span>
+                </button>
+              </mat-menu>
+            </button>
+            <button mat-menu-item [mat-menu-trigger-for]="innekarty">
+              <span>Przenieś do listy</span>
+            </button>
+            <mat-menu #innekarty="matMenu">
+              <button *ngFor="let listWithCardsTemp of listsWithCards" mat-menu-item
+                      (click)="moveCardToList(card.id, listWithCardsTemp.list.id)">
+                <span>{{listWithCardsTemp.list.name}}</span>
+              </button>
 
 
             </mat-menu>
-        </mat-menu>
-      </mat-card-title>
-      <mat-card-content>{{card.description}}</mat-card-content>
-    </mat-card>
+          </mat-menu>
+        </mat-card-title>
+        <mat-card-content>{{card.description}}</mat-card-content>
+      </mat-card>
     </div>
 
   </mat-grid-tile>
@@ -71,7 +76,7 @@
 <br><br>
 <div>
   <br><br><br>
-  <button mat-raised-button (click)="buttonAddList()">Stwórz tablicę</button>
+  <button mat-raised-button (click)="buttonAddList()">Stwórz listę</button>
 </div>
 
 

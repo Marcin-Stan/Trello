@@ -23,12 +23,15 @@ mat-grid-tile {
 }
 
 #karta {
-  display: table; width:100%;
+  display: table;
+  width: 100%;
   text-align: start;
 
 }
 
 #lista {
- height: 95%;
+  height: 95%;
 }
+
+
 

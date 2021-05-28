@@ -10,7 +10,7 @@ export class RegisterFormComponent {
 
   email: string = "";
   password: string = "";
-  displayName: string ="";
+  displayName: string = "";
   UserId: number;
   result: string;
   readonly ROOT_URL = 'https://pl-paw-2021.herokuapp.com/register';
@@ -30,7 +30,7 @@ export class RegisterFormComponent {
   }
 
   onSubmit(fEmail: string, fPassword: string, fDisplayName) {
-    if(fDisplayName!=""){
+    if (fDisplayName != "") {
       this.postData = {
         username: fEmail,
         password: fPassword,
@@ -49,7 +49,7 @@ export class RegisterFormComponent {
         this.postMessage += fDisplayName;
 
       });
-    }else{
+    } else {
       this.loginError = "Pole nazwa nie może być puste!";
     }
 

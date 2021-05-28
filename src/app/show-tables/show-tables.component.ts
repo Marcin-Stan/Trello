@@ -6,9 +6,6 @@ import {MatMenuTrigger} from '@angular/material/menu';
 import {ChangeNameService} from "../change-name-service.service";
 import {IUserWithBoardAndToken} from "../user-with-board-and-token";
 import {IBoardUser} from "../board-user";
-import {Observable} from "rxjs";
-import {FormControl} from "@angular/forms";
-import {map, startWith} from "rxjs/operators";
 
 
 @Component({
@@ -21,15 +18,16 @@ export class ShowTablesComponent implements OnInit {
   readonly ADD_BOARD_URL = 'https://pl-paw-2021.herokuapp.com/boards/add';
   readonly GET_NICKNAMES_URL = 'https://pl-paw-2021.herokuapp.com/users';
   readonly ROOT_URL_change_name = 'https://pl-paw-2021.herokuapp.com/boardChangeName';
-  readonly CHECK_IS_OWNER='https://pl-paw-2021.herokuapp.com/boards/checkOwner';
+  readonly CHECK_IS_OWNER = 'https://pl-paw-2021.herokuapp.com/boards/checkOwner';
   postData = {};
 
 
   constructor(private http: HttpClient, private dialogService: ChangeNameService, private dialogService2: ChangeNameService) {
   }
-  userIsOwner:boolean;
-  listOfBoards:IBoardUser[];
-  @Input() userWithToken :IUserWithToken;
+
+  userIsOwner: boolean;
+  listOfBoards: IBoardUser[];
+  @Input() userWithToken: IUserWithToken;
 
   @Output() messageEvent = new EventEmitter<IUserWithBoardAndToken>();
 
@@ -40,11 +38,13 @@ export class ShowTablesComponent implements OnInit {
 
   getBoards() {
     const headers = new HttpHeaders()
-      .set("authorization",this.userWithToken.token);
-    this.http.post<IBoardUser[]>(this.ROOT_URL,this.userWithToken.user,{headers:headers}).toPromise().then(data => {console.log(data);this.listOfBoards=data;});
+      .set("authorization", this.userWithToken.token);
+    this.http.post<IBoardUser[]>(this.ROOT_URL, this.userWithToken.user, {headers: headers}).toPromise().then(data => {
+      console.log(data);
+      this.listOfBoards = data;
+    });
 
   }
-
 
 
   addBoard(boardName: string) {
@@ -69,7 +69,7 @@ export class ShowTablesComponent implements OnInit {
   contextMenuPosition = {x: '0px', y: '0px'};
 
   onContextMenu(event: MouseEvent, item: IBoard) {
-    this.userIsOwner=false;
+    this.userIsOwner = false;
     event.preventDefault();
     this.checkIsOwner(item);
     this.contextMenuPosition.x = event.clientX + 'px';
@@ -86,7 +86,7 @@ export class ShowTablesComponent implements OnInit {
   }
 
   onContextMenuAction2(item: IBoard) {
-      this.nameChange(item);
+    this.nameChange(item);
   }
 
   nameChange(item: IBoard) {
@@ -141,20 +141,20 @@ export class ShowTablesComponent implements OnInit {
     });
   }
 
-  checkIsOwner(board:IBoard){
+  checkIsOwner(board: IBoard) {
     const headers = new HttpHeaders()
       .set("authorization", this.userWithToken.token);
-    let postData={
-      id:board.id,
-      owner:{
-        id:this.userWithToken.user.id
+    let postData = {
+      id: board.id,
+      owner: {
+        id: this.userWithToken.user.id
       }
     }
-    this.http.post<boolean>(this.CHECK_IS_OWNER,postData,{headers:headers}).subscribe(res=>{
-      if(res){
-        this.userIsOwner=true;
-      }else{
-        this.userIsOwner=false;
+    this.http.post<boolean>(this.CHECK_IS_OWNER, postData, {headers: headers}).subscribe(res => {
+      if (res) {
+        this.userIsOwner = true;
+      } else {
+        this.userIsOwner = false;
       }
     })
   }

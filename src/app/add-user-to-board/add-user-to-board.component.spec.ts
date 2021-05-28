@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { AddUserToBoardComponent } from './add-user-to-board.component';
+import {AddUserToBoardComponent} from './add-user-to-board.component';
 
 describe('AddUserToBoardComponent', () => {
   let component: AddUserToBoardComponent;
@@ -8,9 +8,9 @@ describe('AddUserToBoardComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AddUserToBoardComponent ]
+      declarations: [AddUserToBoardComponent]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

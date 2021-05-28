@@ -5,9 +5,7 @@ import {IList} from "../list";
 import {ChangeNameService} from "../change-name-service.service";
 import {IListWithCards} from "../list-with-cards";
 import {ICard} from "../card";
-import {IBoard} from "../board";
 import {MatMenuTrigger} from "@angular/material/menu";
-import {MatIconModule} from '@angular/material/icon';
 
 
 @Component({
@@ -19,19 +17,19 @@ export class ExploreBoardComponent implements OnInit {
   @Input() userWithBoardAndToken: IUserWithBoardAndToken;
   readonly ROOT_URL = 'https://pl-paw-2021.herokuapp.com/list/getAll';
   readonly ROOT_ADD_URL = 'https://pl-paw-2021.herokuapp.com/list/add';
-  readonly GET_CARDS_FOR_LIST='https://pl-paw-2021.herokuapp.com/card/getAllCardsByList';
-  readonly CHANGE_LIST_NAME='https://pl-paw-2021.herokuapp.com/list/changeName';
-  readonly ADD_CARD='https://pl-paw-2021.herokuapp.com/cards/add';
-  readonly CHANGE_CARD_TITLE='https://pl-paw-2021.herokuapp.com/card/changeTitle';
-  readonly CHANGE_CARD_DESCRIPTION='https://pl-paw-2021.herokuapp.com/card/changeDescription';
+  readonly GET_CARDS_FOR_LIST = 'https://pl-paw-2021.herokuapp.com/card/getAllCardsByList';
+  readonly CHANGE_LIST_NAME = 'https://pl-paw-2021.herokuapp.com/list/changeName';
+  readonly ADD_CARD = 'https://pl-paw-2021.herokuapp.com/cards/add';
+  readonly CHANGE_CARD_TITLE = 'https://pl-paw-2021.herokuapp.com/card/changeTitle';
+  readonly CHANGE_CARD_DESCRIPTION = 'https://pl-paw-2021.herokuapp.com/card/changeDescription';
   readonly SET_LIST_ARCHIVED = 'https://pl-paw-2021.herokuapp.com/list/archived';
-  readonly CHANGE_LIST_OF_CARD='https://pl-paw-2021.herokuapp.com/card/changeList';
+  readonly CHANGE_LIST_OF_CARD = 'https://pl-paw-2021.herokuapp.com/card/changeList';
   readonly SET_CARD_ARCHIVED = 'https://pl-paw-2021.herokuapp.com/card/archived';
   readonly SET_CARD_LABEL = 'https://pl-paw-2021.herokuapp.com/card/changeLabel';
 
   lists: IList[];
-  listsWithCards:IListWithCards[]=[];
-  tempListWithCards:IListWithCards={list:null,cards:null};
+  listsWithCards: IListWithCards[] = [];
+  tempListWithCards: IListWithCards = {list: null, cards: null};
   contextMenuPosition = {x: '0px', y: '0px'};
   private userIsOwner: boolean;
   @ViewChild(MatMenuTrigger)
@@ -51,7 +49,7 @@ export class ExploreBoardComponent implements OnInit {
   }
 
   getLists() {
-    this.listsWithCards=[];
+    this.listsWithCards = [];
     const headers = new HttpHeaders()
       .set("authorization", this.userWithBoardAndToken.userWithToken.token);
     this.http.post<IList[]>(this.ROOT_URL, this.userWithBoardAndToken.board, {headers: headers}).subscribe(data => {
@@ -61,25 +59,24 @@ export class ExploreBoardComponent implements OnInit {
   }
 
   getCardsForLists() {
-    for(let value of this.lists){
+    for (let value of this.lists) {
       this.getCardsForList(value);
     }
   }
 
-  getCardsForList(list:IList){
+  getCardsForList(list: IList) {
     const headers = new HttpHeaders()
       .set("authorization", this.userWithBoardAndToken.userWithToken.token);
-    this.http.post<ICard[]>(this.GET_CARDS_FOR_LIST,list,{headers:headers}).subscribe(res=>{
+    this.http.post<ICard[]>(this.GET_CARDS_FOR_LIST, list, {headers: headers}).subscribe(res => {
       let tmp;
-      tmp={
-        list:list,
-        cards:res,
+      tmp = {
+        list: list,
+        cards: res,
       }
       console.log(tmp);
       this.listsWithCards.push(tmp);
     })
   }
-
 
 
   addList(listName: string) {
@@ -113,7 +110,7 @@ export class ExploreBoardComponent implements OnInit {
     });
   }
 
-  addCardToList(list:IList,name:string){
+  addCardToList(list: IList, name: string) {
     let params = new HttpParams();
     params = params.set('title', name);
     const headers = new HttpHeaders()
@@ -122,13 +119,13 @@ export class ExploreBoardComponent implements OnInit {
       headers: headers,
       params: params
     };
-    this.http.post(this.ADD_CARD,list.id,requestOptions).subscribe(res=>{
-      this.getLists();
+    this.http.post(this.ADD_CARD, list.id, requestOptions).subscribe(res => {
+        this.getLists();
       }
     );
   }
 
-  changeListName(list:IList,name:string){
+  changeListName(list: IList, name: string) {
     let params = new HttpParams();
     params = params.set('name', name);
     const headers = new HttpHeaders()
@@ -137,41 +134,41 @@ export class ExploreBoardComponent implements OnInit {
       headers: headers,
       params: params
     };
-    this.http.post(this.CHANGE_LIST_NAME,list.id,requestOptions).subscribe(res=>{
+    this.http.post(this.CHANGE_LIST_NAME, list.id, requestOptions).subscribe(res => {
         this.getLists();
       }
     );
   }
 
-  changeCardTitle(card:ICard, title:string){
-  let params = new HttpParams();
-      params = params.set('title', title);
-      const headers = new HttpHeaders()
-        .set("authorization", this.userWithBoardAndToken.userWithToken.token);
-      const requestOptions = {
-        headers: headers,
-        params: params
-      };
-      this.http.post(this.CHANGE_CARD_TITLE,card.id,requestOptions).subscribe(res=>{
-          this.getLists();
-        }
-      );
+  changeCardTitle(card: ICard, title: string) {
+    let params = new HttpParams();
+    params = params.set('title', title);
+    const headers = new HttpHeaders()
+      .set("authorization", this.userWithBoardAndToken.userWithToken.token);
+    const requestOptions = {
+      headers: headers,
+      params: params
+    };
+    this.http.post(this.CHANGE_CARD_TITLE, card.id, requestOptions).subscribe(res => {
+        this.getLists();
+      }
+    );
   }
 
-  changeCardDescription(card:ICard, description:string){
+  changeCardDescription(card: ICard, description: string) {
     let params = new HttpParams();
-        params = params.set('description', description);
-        const headers = new HttpHeaders()
-          .set("authorization", this.userWithBoardAndToken.userWithToken.token);
-        const requestOptions = {
-          headers: headers,
-          params: params
-        };
-        this.http.post(this.CHANGE_CARD_DESCRIPTION,card.id,requestOptions).subscribe(res=>{
-            this.getLists();
-          }
-        );
-    }
+    params = params.set('description', description);
+    const headers = new HttpHeaders()
+      .set("authorization", this.userWithBoardAndToken.userWithToken.token);
+    const requestOptions = {
+      headers: headers,
+      params: params
+    };
+    this.http.post(this.CHANGE_CARD_DESCRIPTION, card.id, requestOptions).subscribe(res => {
+        this.getLists();
+      }
+    );
+  }
 
   changeListNameButton(list: IList) {
     const options = {
@@ -220,7 +217,7 @@ export class ExploreBoardComponent implements OnInit {
     this.dialogService.confirmed().subscribe(confirmed => {
       if (!confirmed.isEmpty) {
         console.log(confirmed);
-        this.changeCardTitle(card,confirmed);
+        this.changeCardTitle(card, confirmed);
       }
     });
   }
@@ -236,7 +233,7 @@ export class ExploreBoardComponent implements OnInit {
     this.dialogService.confirmed().subscribe(confirmed => {
       if (!confirmed.isEmpty) {
         console.log(confirmed);
-        this.changeCardDescription(card,confirmed);
+        this.changeCardDescription(card, confirmed);
       }
     });
   }
@@ -245,57 +242,81 @@ export class ExploreBoardComponent implements OnInit {
     this.setCardAsArchived(card);
   }
 
-
-  addLabel1(card: ICard) {
-    console.log("AAAAAAAAAAAAAA");
-  }
-
-  setListAsArchived(list:IList){
+  setListAsArchived(list: IList) {
     const headers = new HttpHeaders()
-    .set("authorization", this.userWithBoardAndToken.userWithToken.token);
-       this.http.post(this.SET_LIST_ARCHIVED,list.id,{headers:headers}).subscribe(res=>{
-       this.getLists();
-       });
+      .set("authorization", this.userWithBoardAndToken.userWithToken.token);
+    this.http.post(this.SET_LIST_ARCHIVED, list.id, {headers: headers}).subscribe(res => {
+      this.getLists();
+    });
   }
 
-  setCardAsArchived(card:ICard){
-      const headers = new HttpHeaders()
+  setCardAsArchived(card: ICard) {
+    const headers = new HttpHeaders()
       .set("authorization", this.userWithBoardAndToken.userWithToken.token);
-         this.http.post(this.SET_CARD_ARCHIVED,card.id,{headers:headers}).subscribe(res=>{
-         this.getLists();
-         });
-    }
+    this.http.post(this.SET_CARD_ARCHIVED, card.id, {headers: headers}).subscribe(res => {
+      this.getLists();
+    });
+  }
 
   moveCardToList(idCard: number, idList: number) {
     console.log(idCard, idList);
-    this.changeListOfCard(idCard,idList);
+    this.changeListOfCard(idCard, idList);
   }
 
-  changeListOfCard(idCard:number, idList:number){
+  changeListOfCard(idCard: number, idList: number) {
     const headers = new HttpHeaders()
-    .set("authorization", this.userWithBoardAndToken.userWithToken.token);
+      .set("authorization", this.userWithBoardAndToken.userWithToken.token);
     let params = new HttpParams();
-        params = params.set('cardId', idCard.toString());
+    params = params.set('cardId', idCard.toString());
     const requestOptions = {
-          headers: headers,
-          params: params
-        };
+      headers: headers,
+      params: params
+    };
 
-    this.http.post(this.CHANGE_LIST_OF_CARD,idList,requestOptions).subscribe(res=>{
-    this.getLists();
+    this.http.post(this.CHANGE_LIST_OF_CARD, idList, requestOptions).subscribe(res => {
+      this.getLists();
     });
   }
-  changeCardLabel(card:ICard, label:string){
-  const headers = new HttpHeaders()
+
+  changeCardLabel(card: ICard, label: number) {
+    const headers = new HttpHeaders()
       .set("authorization", this.userWithBoardAndToken.userWithToken.token);
-  let params = new HttpParams();
-          params = params.set('label', label);
-     const requestOptions = {
-            headers: headers,
-            params: params
-          };
-  this.http.post(this.SET_CARD_LABEL,card.id,requestOptions).subscribe(res=>{
-  this.getLists();
-  })
+    let params = new HttpParams();
+    params = params.set('label', String(label));
+    const requestOptions = {
+      headers: headers,
+      params: params
+    };
+    this.http.post(this.SET_CARD_LABEL, card.id, requestOptions).subscribe(res => {
+      this.getLists();
+    })
+  }
+
+  addLabel2(card: ICard) {
+    this.changeCardLabel(card, 2)
+  }
+
+  addLabel3(card: ICard) {
+    this.changeCardLabel(card, 3)
+  }
+
+  addLabel1(card: ICard) {
+    this.changeCardLabel(card, 1)
+  }
+
+  addLabel0(card: ICard) {
+    this.changeCardLabel(card, 0)
+  }
+
+  getCardLabelColor(card: ICard) {
+    if (card.label == 0) {
+      return 'none';
+    } else if (card.label == 1) {
+      return '#ff726f'
+    } else if (card.label == 2) {
+      return '#86c5da'
+    } else if (card.label == 3) {
+      return '#5BC236'
+    }
   }
 }

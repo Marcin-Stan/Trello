@@ -3,29 +3,29 @@
     <div *ngIf="!LogedIn">
       <div id='loghead'>
         <mat-card>
-        <mat-card-title>Zaloguj się</mat-card-title>
+          <mat-card-title>Zaloguj się</mat-card-title>
           <mat-card-content>
-          <mat-form-field appearance="outline">
-          <mat-label>Email</mat-label>
-          <input #email matInput placeholder="name@domain.com">
-        </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Email</mat-label>
+              <input #email matInput placeholder="name@domain.com">
+            </mat-form-field>
 
 
-      <mat-form-field appearance="outline">
-        <mat-label>Hasło</mat-label>
-        <input #password id="password" type="password" name="password" matInput>
-      </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Hasło</mat-label>
+              <input #password id="password" type="password" name="password" matInput>
+            </mat-form-field>
 
-      <p style="color:red">{{loginError}}</p>
-      <button mat-raised-button (click)="onSubmit(email.value,password.value)">Logowanie</button>
-            </mat-card-content>
-      </mat-card>
+            <p style="color:red">{{loginError}}</p>
+            <button mat-raised-button (click)="onSubmit(email.value,password.value)">Logowanie</button>
+          </mat-card-content>
+        </mat-card>
       </div>
     </div>
     <div *ngIf="LogedIn">
       <mat-card>
         <mat-card-title>
-      <a>Jesteś zalogowany jako <b>{{user.displayName}}</b></a>
+          <a>Jesteś zalogowany jako <b>{{user.displayName}}</b></a>
         </mat-card-title>
       </mat-card>
 
