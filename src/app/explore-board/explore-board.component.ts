@@ -291,11 +291,11 @@ export class ExploreBoardComponent implements OnInit {
     });
   }
 
-  changeCardLabel(card: ICard, label: number) {
+  changeCardLabel(card: ICard, label: string) {
     const headers = new HttpHeaders()
       .set("authorization", this.userWithBoardAndToken.userWithToken.token);
     let params = new HttpParams();
-    params = params.set('label', String(label));
+    params = params.set('label', label);
     const requestOptions = {
       headers: headers,
       params: params
@@ -305,31 +305,8 @@ export class ExploreBoardComponent implements OnInit {
     })
   }
 
-  addLabel2(card: ICard) {
-    this.changeCardLabel(card, 2)
+  addLabel(card: ICard, labelID: number) {
+    this.changeCardLabel(card, String(labelID))
   }
 
-  addLabel3(card: ICard) {
-    this.changeCardLabel(card, 3)
-  }
-
-  addLabel1(card: ICard) {
-    this.changeCardLabel(card, 1)
-  }
-
-  addLabel0(card: ICard) {
-    this.changeCardLabel(card, 0)
-  }
-
-  getCardLabelColor(card: ICard) {
-    if (card.label == 0) {
-      return 'none';
-    } else if (card.label == 1) {
-      return '#ff726f'
-    } else if (card.label == 2) {
-      return '#86c5da'
-    } else if (card.label == 3) {
-      return '#5BC236'
-    }
-  }
 }

@@ -1,3 +1,5 @@
+import {ILabel} from "./label";
+
 export interface ICard {
   id: number;
   list_id: number;
@@ -5,5 +7,5 @@ export interface ICard {
   description: any;
   order: number;
   archived: boolean;
-  label: number;
+  label: ILabel
 }

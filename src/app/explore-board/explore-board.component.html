@@ -22,7 +22,7 @@
     </mat-grid-tile-header>
 
     <div id="karta">
-      <mat-card *ngFor="let card of listWithCards.cards" [ngStyle]="{'background-color': getCardLabelColor(card)}">
+      <mat-card *ngFor="let card of listWithCards.cards" [ngStyle]="{'background-color': card.label.color}">
         <mat-card-title>{{card.title}}
           <button style="float:right; text-align: right" mat-icon-button [matMenuTriggerFor]="menuCard">
             <mat-icon>more_vert</mat-icon>
@@ -40,8 +40,8 @@
             <button mat-menu-item [matMenuTriggerFor]="etykiety">
               <span>Etykiety</span>
               <mat-menu #etykiety="matMenu">
-                <button mat-menu-item (click)="addLabel1(card)" *ngFor="">
-                  <span>Ważne</span>
+                <button mat-menu-item (click)="addLabel(card, label.id)" *ngFor="let label of labels">
+                  <span>{{label.name}}</span>
                 </button>
               </mat-menu>
             </button>
