@@ -18,6 +18,8 @@ export class AddUserToBoardComponent implements OnInit {
   readonly ADD_USER_TO_BOARDUSER = 'https://pl-paw-2021.herokuapp.com/boardsUser/add';
   readonly CHECK_IS_OWNER = 'https://pl-paw-2021.herokuapp.com/boards/checkOwner'
   readonly GET_USERS_TO_BOARD = 'https://pl-paw-2021.herokuapp.com/boardsUser/getUsersByBoard';
+  readonly ADD_LABEL = 'https://pl-paw-2021.herokuapp.com/label/add';
+
   userIsOwner: boolean;
   myControl = new FormControl();
   nicknames: string[];
@@ -74,6 +76,22 @@ export class AddUserToBoardComponent implements OnInit {
         this.nicknames.splice(index, 1);
       }
     })
+  }
+
+  addLabel(name:string, color:string){
+    const headers = new HttpHeaders()
+      .set("authorization", this.userWithBoardAndToken.userWithToken.token);
+    let toSend={
+      board:this.userWithBoardAndToken.board,
+      name:name,
+      color:color,
+    }
+
+
+    this.http.post(this.ADD_LABEL, toSend,{headers: headers}).toPromise().then(data => {});
+
+
+
   }
 
   getNicknames() {
@@ -136,8 +154,8 @@ export class AddUserToBoardComponent implements OnInit {
 
     this.dialogService.open(options);
     this.dialogService.confirmed().subscribe(confirmed => {
-      if (!confirmed.isEmpty) {
-        console.log(confirmed);
+      if (!confirmed.isEmpty&&(confirmed.length==2)) {
+        this.addLabel(confirmed[0],confirmed[1]);
       }
     });
   }
