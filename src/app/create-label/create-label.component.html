@@ -1,0 +1,16 @@
+<div class="header">
+  <h1 mat-dialog-title>{{ data.title }}</h1>
+</div>
+<div mat-dialog-content>
+  <p class="dialog-message">{{ data.message }}</p>
+</div>
+<label id="name">
+  <input matInput placeholder="Nazwa etykiety" [(ngModel)]='newName'>
+</label>
+<label id = "color">
+  <input type="color" placeholder="#ffffff" [(ngModel)]="newColor">
+</label>
+<div mat-dialog-actions>
+  <button class="btn btn-cancel" style="margin-right:10px;" (click)="cancel()">{{ data.cancelText }}</button>
+  <button class="btn" (click)="confirm()">{{ data.confirmText }}</button>
+</div>

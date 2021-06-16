@@ -5,6 +5,7 @@ import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
 import {map, startWith} from "rxjs/operators";
 import {IUser} from "../user";
 import {IUserWithBoardAndToken} from "../user-with-board-and-token";
+import {AddLabelService} from "../add-label.service";
 
 @Component({
   selector: 'app-add-user-to-board',
@@ -23,7 +24,8 @@ export class AddUserToBoardComponent implements OnInit {
   filteredOptions: Observable<string[]>;
   errorMessage: string;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient,
+              private dialogService: AddLabelService) {
   }
 
   @Input() userWithBoardAndToken: IUserWithBoardAndToken;
@@ -122,6 +124,22 @@ export class AddUserToBoardComponent implements OnInit {
       this.errorMessage = "Nie możesz dodać tego użytkownika!";
     }
 
+  }
+
+  addLabelButton() {
+    const options = {
+      title: 'Definiowanie nowej etykiety',
+      message: 'Podaj nazwę oraz kolor etykiety:',
+      cancelText: 'Anuluj',
+      confirmText: 'Potwierdź'
+    };
+
+    this.dialogService.open(options);
+    this.dialogService.confirmed().subscribe(confirmed => {
+      if (!confirmed.isEmpty) {
+        console.log(confirmed);
+      }
+    });
   }
 
 }

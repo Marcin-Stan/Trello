@@ -21,6 +21,13 @@ import {MatOptionModule} from "@angular/material/core";
 import {MatAutocompleteModule} from "@angular/material/autocomplete";
 import {AddUserToBoardComponent} from './add-user-to-board/add-user-to-board.component';
 import {MatIconModule} from "@angular/material/icon";
+import { CreateLabelComponent } from './create-label/create-label.component';
+import {
+  MAT_COLOR_FORMATS,
+  NGX_MAT_COLOR_FORMATS,
+  NgxMatColorPickerModule
+} from "@angular-material-components/color-picker";
+import {AddLabelService} from "./add-label.service";
 
 
 @NgModule({
@@ -32,7 +39,8 @@ import {MatIconModule} from "@angular/material/icon";
     ShowTablesComponent,
     ExploreBoardComponent,
     NameChangeComponent,
-    AddUserToBoardComponent
+    AddUserToBoardComponent,
+    CreateLabelComponent
   ],
   imports: [
     BrowserModule,
@@ -48,10 +56,13 @@ import {MatIconModule} from "@angular/material/icon";
     MatOptionModule,
     MatAutocompleteModule,
     ReactiveFormsModule,
-    MatIconModule
+    MatIconModule,
+    NgxMatColorPickerModule
 
   ],
-  providers: [ChangeNameService
+  providers: [ChangeNameService,
+    { provide: MAT_COLOR_FORMATS, useValue: NGX_MAT_COLOR_FORMATS },
+    AddLabelService
   ],
   bootstrap: [AppComponent],
   exports: [NameChangeComponent]
