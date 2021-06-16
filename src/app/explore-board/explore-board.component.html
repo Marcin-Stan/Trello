@@ -23,7 +23,7 @@
 
     <div id="karta">
       <ng-container *ngFor="let card of listWithCards.cards">
-      <mat-card *ngIf="card.label!=null" [ngStyle]="{'background-color': card.label.color}">
+      <mat-card  [ngStyle]="{'background-color': card.label!=null ? card.label.color : '#ffffff'}">
         <mat-card-title>{{card.title}}
           <button style="float:right; text-align: right" mat-icon-button [matMenuTriggerFor]="menuCard">
             <mat-icon>more_vert</mat-icon>
@@ -41,6 +41,9 @@
             <button mat-menu-item [matMenuTriggerFor]="etykiety">
               <span>Etykiety</span>
               <mat-menu #etykiety="matMenu">
+                <button mat-menu-item (click)="addLabel(card, 0)" >
+                  <span>Brak etykiety</span>
+                </button>
                 <button mat-menu-item (click)="addLabel(card, label.id)" *ngFor="let label of labels">
                   <span>{{label.name}}</span>
                 </button>
@@ -56,53 +59,16 @@
                 <span>{{listWithCardsTemp.list.name}}</span>
               </button>
               </ng-container>
-
-
             </mat-menu>
           </mat-menu>
         </mat-card-title>
         <mat-card-content>{{card.description}}</mat-card-content>
+        <mat-card-footer>
+          <div *ngIf="card.label">
+            {{card.label.name}}
+          </div>
+        </mat-card-footer>
       </mat-card>
-        <mat-card *ngIf="card.label==null" [ngStyle]="{'background-color': '#ffffff'}">
-          <mat-card-title>{{card.title}}
-            <button style="float:right; text-align: right" mat-icon-button [matMenuTriggerFor]="menuCard">
-              <mat-icon>more_vert</mat-icon>
-            </button>
-            <mat-menu #menuCard="matMenu">
-              <button mat-menu-item (click)="changeCardNameButton(card)">
-                <span>Zmień nazwę</span>
-              </button>
-              <button mat-menu-item (click)="changeCardDescriptionButton(card)">
-                <span>Zmień opis</span>
-              </button>
-              <button mat-menu-item (click)="archiveCardButton(card)">
-                <span>Archiwizuj</span>
-              </button>
-              <button mat-menu-item [matMenuTriggerFor]="etykiety">
-                <span>Etykiety</span>
-                <mat-menu #etykiety="matMenu">
-                  <button mat-menu-item (click)="addLabel(card, label.id)" *ngFor="let label of labels">
-                    <span>{{label.name}}</span>
-                  </button>
-                </mat-menu>
-              </button>
-              <button mat-menu-item [mat-menu-trigger-for]="innekarty">
-                <span>Przenieś do listy</span>
-              </button>
-              <mat-menu #innekarty="matMenu" >
-                <ng-container  *ngFor="let listWithCardsTemp of listsWithCards">
-                  <button   *ngIf="listWithCardsTemp!=listWithCards" mat-menu-item
-                            (click)="moveCardToList(card.id, listWithCardsTemp.list.id)" >
-                    <span>{{listWithCardsTemp.list.name}}</span>
-                  </button>
-                </ng-container>
-
-
-              </mat-menu>
-            </mat-menu>
-          </mat-card-title>
-          <mat-card-content>{{card.description}}</mat-card-content>
-        </mat-card>
       </ng-container>
     </div>
 
