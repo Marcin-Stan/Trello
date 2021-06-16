@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormControl} from "@angular/forms";
 import {Observable} from "rxjs";
 import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
@@ -31,6 +31,7 @@ export class AddUserToBoardComponent implements OnInit {
   }
 
   @Input() userWithBoardAndToken: IUserWithBoardAndToken;
+  @Output() messageEvent = new EventEmitter<string>();
 
   ngOnInit(): void {
     this.getNicknames();
@@ -88,9 +89,9 @@ export class AddUserToBoardComponent implements OnInit {
     }
 
 
-    this.http.post(this.ADD_LABEL, toSend,{headers: headers}).toPromise().then(data => {});
-
-
+    this.http.post(this.ADD_LABEL, toSend,{headers: headers}).toPromise().then(data => {
+      this.messageEvent.emit("reload");
+    });
 
   }
 
