@@ -26,4 +26,6 @@ public class LabelController {
     public ResponseEntity<Label> addNewLabel(@RequestBody Label label){
         return ResponseEntity.ok(labelRepository.save(label));
     }
+
+
 }

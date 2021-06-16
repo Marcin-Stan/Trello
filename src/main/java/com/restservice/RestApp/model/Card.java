@@ -21,8 +21,6 @@ public class Card {
     @Column(name="description")
     private String description;
 
-    @Column(name="label")
-    private int label;
 
     @Column(name = "archived")
     private Boolean isArchived;
@@ -31,9 +29,14 @@ public class Card {
     @JoinColumn(name = "list_id",referencedColumnName = "id")
     private List list;
 
+    @ManyToOne
+    @JoinColumn(name = "label_id",referencedColumnName = "id")
+    private Label label;
+
     @OneToMany(mappedBy = "card",cascade = CascadeType.ALL)
     @JsonIgnore
     private java.util.List<Comment> commentList;
+
 
     public Card(String title, List list) {
         this.title = title;

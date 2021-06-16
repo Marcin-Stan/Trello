@@ -1,5 +1,6 @@
 package com.restservice.RestApp.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -24,6 +25,10 @@ public class Label {
     @JoinColumn(name = "board_id",referencedColumnName = "id")
     private Board board;
 
+
+    @OneToMany(mappedBy = "label",cascade = CascadeType.ALL)
+    @JsonIgnore
+    private java.util.List<Card> cardList;
 
 
 }
