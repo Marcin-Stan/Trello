@@ -74,24 +74,21 @@ export class ExploreBoardComponent implements OnInit {
     });
   }
 
-  getCardsForLists() {
-    for (let value of this.lists) {
-      this.getCardsForList(value);
-    }
-  }
 
-  getCardsForList(list: IList) {
+  getCardsForLists() {
     const headers = new HttpHeaders()
       .set("authorization", this.userWithBoardAndToken.userWithToken.token);
-    this.http.post<ICard[]>(this.GET_CARDS_FOR_LIST, list, {headers: headers}).subscribe(res => {
-      let tmp;
-      tmp = {
-        list: list,
-        cards: res,
+    for (let i=0;i<this.lists.length;i++) {
+      let tmpList;
+      tmpList={
+        list:this.lists[i],
+        card:null,
       }
-      console.log(tmp);
-      this.listsWithCards.push(tmp);
-    })
+      this.listsWithCards.push(tmpList);
+      this.http.post<ICard[]>(this.GET_CARDS_FOR_LIST, this.lists[i], {headers: headers}).subscribe(res => {
+        this.listsWithCards[i].cards=res;
+      })
+    }
   }
 
 
