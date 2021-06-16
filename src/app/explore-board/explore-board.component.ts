@@ -52,8 +52,9 @@ export class ExploreBoardComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getLists();
     this.getLabels();
+    this.getLists();
+
     this.eventsSubscription = this.events.subscribe(() => this.getLabels());
   }
 
@@ -69,6 +70,11 @@ export class ExploreBoardComponent implements OnInit {
       this.labels=[];
       this.labels = data;
       console.log(this.labels);
+      for(let i=0;i<this.labels.length;i++){
+        if(this.labels[i].color==null){
+          this.labels[i].color='#ffffff';
+        }
+      }
     });
 
   }
