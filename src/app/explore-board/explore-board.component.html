@@ -40,17 +40,8 @@
             <button mat-menu-item [matMenuTriggerFor]="etykiety">
               <span>Etykiety</span>
               <mat-menu #etykiety="matMenu">
-                <button mat-menu-item (click)="addLabel1(card)">
+                <button mat-menu-item (click)="addLabel1(card)" *ngFor="">
                   <span>Ważne</span>
-                </button>
-                <button mat-menu-item (click)="addLabel2(card)">
-                  <span>Warto pamiętać</span>
-                </button>
-                <button mat-menu-item (click)="addLabel3(card)">
-                  <span>Mało ważne</span>
-                </button>
-                <button mat-menu-item (click)="addLabel0(card)">
-                  <span>Brak</span>
                 </button>
               </mat-menu>
             </button>
