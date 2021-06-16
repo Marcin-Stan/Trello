@@ -68,4 +68,5 @@ public class CardController {
         card.setIsArchived(true);
         return ResponseEntity.ok(cardRepository.save(card));
     }
+
 }
