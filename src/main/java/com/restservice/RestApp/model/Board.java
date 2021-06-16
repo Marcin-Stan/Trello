@@ -39,6 +39,10 @@ public class Board {
     @JsonIgnore
     private List<com.restservice.RestApp.model.List> lists;
 
+    @OneToMany(mappedBy = "board",cascade = CascadeType.ALL)
+    @JsonIgnore
+    private List<Label> labelList;
+
     public Board(@NotEmpty String name,
                  @NotEmpty User user){
         this.name = name;
