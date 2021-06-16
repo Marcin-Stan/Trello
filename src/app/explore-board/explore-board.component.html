@@ -57,11 +57,13 @@
             <button mat-menu-item [mat-menu-trigger-for]="innekarty">
               <span>Przenieś do listy</span>
             </button>
-            <mat-menu #innekarty="matMenu">
-              <button *ngFor="let listWithCardsTemp of listsWithCards" mat-menu-item
-                      (click)="moveCardToList(card.id, listWithCardsTemp.list.id)">
+            <mat-menu #innekarty="matMenu" >
+              <ng-container  *ngFor="let listWithCardsTemp of listsWithCards">
+              <button   *ngIf="listWithCardsTemp!=listWithCards" mat-menu-item
+                      (click)="moveCardToList(card.id, listWithCardsTemp.list.id)" >
                 <span>{{listWithCardsTemp.list.name}}</span>
               </button>
+              </ng-container>
 
 
             </mat-menu>
