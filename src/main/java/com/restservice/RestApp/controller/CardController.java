@@ -56,8 +56,13 @@ public class CardController {
     @PostMapping("/card/changeLabel")
     public ResponseEntity<Card> changeLabel(@RequestBody Long cardId, Long labelId ){
         Card card = cardRepository.getOne(cardId);
-        Label label = labelRepository.findById(labelId).get();
-        card.setLabel(label);
+        if(labelId==0) {
+            card.setLabel(null);
+        }
+        else{
+            Label label = labelRepository.findById(labelId).get();
+            card.setLabel(label);
+        }
         return ResponseEntity.ok(cardRepository.save(card));
     }
 
