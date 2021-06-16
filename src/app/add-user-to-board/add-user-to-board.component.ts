@@ -136,7 +136,7 @@ export class AddUserToBoardComponent implements OnInit {
 
     this.dialogService.open(options);
     this.dialogService.confirmed().subscribe(confirmed => {
-      if (!confirmed.isEmpty) {
+      if (confirmed.length === 2) {
         console.log(confirmed);
       }
     });

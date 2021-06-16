@@ -8,7 +8,7 @@ import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 })
 export class CreateLabelComponent implements OnInit {
   newName: any;
-  newColor: any;
+  newColor = "#ffffff";
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: {
     cancelText: string,
