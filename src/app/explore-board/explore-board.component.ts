@@ -6,6 +6,7 @@ import {ChangeNameService} from "../change-name-service.service";
 import {IListWithCards} from "../list-with-cards";
 import {ICard} from "../card";
 import {MatMenuTrigger} from "@angular/material/menu";
+import {ILabel} from "../label";
 
 
 @Component({
@@ -26,6 +27,7 @@ export class ExploreBoardComponent implements OnInit {
   readonly CHANGE_LIST_OF_CARD = 'https://pl-paw-2021.herokuapp.com/card/changeList';
   readonly SET_CARD_ARCHIVED = 'https://pl-paw-2021.herokuapp.com/card/archived';
   readonly SET_CARD_LABEL = 'https://pl-paw-2021.herokuapp.com/card/changeLabel';
+  readonly GET_LABELS = 'https://pl-paw-2021.herokuapp.com/label/getAllByBoard';
 
   lists: IList[];
   listsWithCards: IListWithCards[] = [];
@@ -38,6 +40,7 @@ export class ExploreBoardComponent implements OnInit {
   menuCard: any;
   etykiety: any;
   innekarty: any;
+  labels:ILabel[];
 
 
   constructor(private http: HttpClient,
@@ -46,7 +49,20 @@ export class ExploreBoardComponent implements OnInit {
 
   ngOnInit(): void {
     this.getLists();
+    this.getLabels();
   }
+
+  getLabels(){
+    this.labels=[];
+    const headers = new HttpHeaders()
+      .set("authorization", this.userWithBoardAndToken.userWithToken.token);
+    this.http.post<ILabel[]>(this.GET_LABELS, this.userWithBoardAndToken.board, {headers: headers}).subscribe(data => {
+      this.labels = data;
+      console.log(this.labels);
+    });
+
+  }
+
 
   getLists() {
     this.listsWithCards = [];
