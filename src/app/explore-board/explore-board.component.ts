@@ -7,6 +7,7 @@ import {IListWithCards} from "../list-with-cards";
 import {ICard} from "../card";
 import {MatMenuTrigger} from "@angular/material/menu";
 import {ILabel} from "../label";
+import {Observable, Subscription} from "rxjs";
 
 
 @Component({
@@ -41,7 +42,10 @@ export class ExploreBoardComponent implements OnInit {
   etykiety: any;
   innekarty: any;
   labels:ILabel[];
+  private eventsSubscription: Subscription;
 
+
+  @Input() events: Observable<void>;
 
   constructor(private http: HttpClient,
               private dialogService: ChangeNameService) {
@@ -50,13 +54,19 @@ export class ExploreBoardComponent implements OnInit {
   ngOnInit(): void {
     this.getLists();
     this.getLabels();
+    this.eventsSubscription = this.events.subscribe(() => this.getLabels());
+  }
+
+  ngOnDestroy(){
+    this.eventsSubscription.unsubscribe();
   }
 
   getLabels(){
-    this.labels=[];
+
     const headers = new HttpHeaders()
       .set("authorization", this.userWithBoardAndToken.userWithToken.token);
     this.http.post<ILabel[]>(this.GET_LABELS, this.userWithBoardAndToken.board, {headers: headers}).subscribe(data => {
+      this.labels=[];
       this.labels = data;
       console.log(this.labels);
     });

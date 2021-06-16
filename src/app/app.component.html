@@ -25,14 +25,14 @@
     </div>
   </div>
   <div *ngIf="isBoardSelected">
-    <app-explore-board [userWithBoardAndToken]=this.userWithBoardAndToken></app-explore-board>
+    <app-explore-board [userWithBoardAndToken]=this.userWithBoardAndToken [events]="eventsSubject.asObservable()"></app-explore-board>
   </div>
 </section>
 
 <aside>
   <app-login-form (messageEvent)="receiveMessage($event)"></app-login-form>
   <div *ngIf="isBoardSelected">
-    <app-add-user-to-board [userWithBoardAndToken]=this.userWithBoardAndToken></app-add-user-to-board>
+    <app-add-user-to-board [userWithBoardAndToken]=this.userWithBoardAndToken (messageEvent)="reloadExploreBoard($event)"></app-add-user-to-board>
   </div>
 
 </aside>

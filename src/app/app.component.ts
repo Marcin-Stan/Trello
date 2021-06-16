@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import {IUserWithToken} from "./user-with-token";
 import {IUserWithBoardAndToken} from "./user-with-board-and-token";
+import {Subject} from "rxjs";
 
 
 @Component({
@@ -14,14 +15,23 @@ export class AppComponent {
   userWithBoardAndToken: IUserWithBoardAndToken;
   isBoardSelected: boolean;
   LogedIn: boolean;
+  eventsSubject: Subject<void> = new Subject<void>();
 
   constructor() {
     this.LogedIn = false;
   }
 
+
+  emitEventToChild() {
+    this.eventsSubject.next();
+  }
+
   receiveMessage($event) {
     this.userWithToken = $event;
     this.LogedIn = true;
+  }
+  reloadExploreBoard($event){
+    this.emitEventToChild();
   }
 
   boardIsSelected($event) {
