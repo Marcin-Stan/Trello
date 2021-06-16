@@ -26,7 +26,7 @@ public class Label {
     private Board board;
 
 
-    @OneToMany(mappedBy = "label",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "label")
     @JsonIgnore
     private java.util.List<Card> cardList;
 
