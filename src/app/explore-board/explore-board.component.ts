@@ -311,7 +311,7 @@ export class ExploreBoardComponent implements OnInit {
     const headers = new HttpHeaders()
       .set("authorization", this.userWithBoardAndToken.userWithToken.token);
     let params = new HttpParams();
-    params = params.set('label', label);
+    params = params.set('labelId', label);
     const requestOptions = {
       headers: headers,
       params: params
