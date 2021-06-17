@@ -362,7 +362,8 @@ export class ExploreBoardComponent implements OnInit {
     const options = {
       cancelText: 'Anuluj',
       confirmText: 'Potwierdź',
-      card: card
+      card: card,
+      userWithBoardAndToken:this.userWithBoardAndToken
     };
 
     this.dialogService2.open(options);

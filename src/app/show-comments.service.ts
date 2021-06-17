@@ -3,6 +3,8 @@ import {MatDialog, MatDialogRef} from '@angular/material/dialog';
 import {Observable} from 'rxjs';
 import {map, take} from 'rxjs/operators';
 import {ShowCommentsComponent} from "./show-comments/show-comments.component";
+import {IUserWithBoardAndToken} from "./user-with-board-and-token";
+import {IComment} from "./comment";
 
 @Injectable()
 export class ShowCommentsService {
@@ -16,7 +18,8 @@ export class ShowCommentsService {
       data: {
         cancelText: options.cancelText,
         confirmText: options.confirmText,
-        card: options.card
+        card: options.card,
+        userWithBoardAndToken:options.userWithBoardAndToken
       }
     });
   }
