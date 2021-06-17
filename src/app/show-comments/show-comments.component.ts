@@ -1,5 +1,6 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
+import {ICard} from "../card";
 
 
 @Component({
@@ -12,6 +13,7 @@ export class ShowCommentsComponent implements OnInit {
   constructor(@Inject(MAT_DIALOG_DATA) public data: {
     cancelText: string,
     confirmText: string,
+    card: ICard
   }, private mdDialogRef: MatDialogRef<ShowCommentsComponent>) {
   }
 
