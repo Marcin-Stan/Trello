@@ -29,6 +29,7 @@ import {
 } from "@angular-material-components/color-picker";
 import {AddLabelService} from "./add-label.service";
 import { ShowCommentsComponent } from './show-comments/show-comments.component';
+import {ShowCommentsService} from "./show-comments.service";
 
 
 @NgModule({
@@ -64,7 +65,8 @@ import { ShowCommentsComponent } from './show-comments/show-comments.component';
   ],
   providers: [ChangeNameService,
     { provide: MAT_COLOR_FORMATS, useValue: NGX_MAT_COLOR_FORMATS },
-    AddLabelService
+    AddLabelService,
+    ShowCommentsService
   ],
   bootstrap: [AppComponent],
   exports: [NameChangeComponent]
