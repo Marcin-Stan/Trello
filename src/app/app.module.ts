@@ -28,6 +28,7 @@ import {
   NgxMatColorPickerModule
 } from "@angular-material-components/color-picker";
 import {AddLabelService} from "./add-label.service";
+import { ShowCommentsComponent } from './show-comments/show-comments.component';
 
 
 @NgModule({
@@ -40,7 +41,8 @@ import {AddLabelService} from "./add-label.service";
     ExploreBoardComponent,
     NameChangeComponent,
     AddUserToBoardComponent,
-    CreateLabelComponent
+    CreateLabelComponent,
+    ShowCommentsComponent
   ],
   imports: [
     BrowserModule,
