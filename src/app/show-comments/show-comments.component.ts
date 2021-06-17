@@ -1,10 +1,9 @@
-import {Component, Inject, Input, OnInit} from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {ICard} from "../card";
 import {IUserWithBoardAndToken} from "../user-with-board-and-token";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {IComment} from "../comment";
-import {ChangeNameService} from "../change-name-service.service";
 
 
 @Component({

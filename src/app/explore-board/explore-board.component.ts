@@ -361,7 +361,7 @@ export class ExploreBoardComponent implements OnInit {
   showCommentsButton(card: ICard) {
     const options = {
       cancelText: 'Anuluj',
-      confirmText: 'Potwierdź',
+      confirmText: 'Zamknij',
       card: card,
       userWithBoardAndToken:this.userWithBoardAndToken
     };
