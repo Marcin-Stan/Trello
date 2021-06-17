@@ -325,4 +325,22 @@ export class ExploreBoardComponent implements OnInit {
     this.changeCardLabel(card, String(labelID))
   }
 
+  addCommentButton(card: ICard) {
+    const options = {
+      title: 'Dodawanie komentarza',
+      message: 'Podaj treść komentarza:',
+      cancelText: 'Anuluj',
+      confirmText: 'Potwierdź'
+    };
+
+    this.dialogService.open(options);
+    this.dialogService.confirmed().subscribe(confirmed => {
+      if (!confirmed.isEmpty) {
+        console.log(confirmed);
+        //
+        //TUTAJ WYWOŁANIE METODY DO ZAPISANIA KOMENTARZA
+        //
+      }
+    });
+  }
 }
