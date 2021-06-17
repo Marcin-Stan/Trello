@@ -41,6 +41,9 @@
             <button mat-menu-item (click)="addCommentButton(card)">
               <span>Dodaj komentarz</span>
             </button>
+            <button mat-menu-item (click)="showCommentsButton(card)">
+              <span>Pokaż komentarze</span>
+            </button>
             <button mat-menu-item [matMenuTriggerFor]="etykiety">
               <span>Etykiety</span>
               <mat-menu #etykiety="matMenu">

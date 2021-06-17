@@ -8,6 +8,7 @@ import {ICard} from "../card";
 import {MatMenuTrigger} from "@angular/material/menu";
 import {ILabel} from "../label";
 import {Observable, Subscription} from "rxjs";
+import {ShowCommentsService} from "../show-comments.service";
 
 
 @Component({
@@ -49,7 +50,8 @@ export class ExploreBoardComponent implements OnInit {
   @Input() events: Observable<void>;
 
   constructor(private http: HttpClient,
-              private dialogService: ChangeNameService) {
+              private dialogService: ChangeNameService,
+              private dialogService2: ShowCommentsService) {
   }
 
   ngOnInit(): void {
@@ -354,5 +356,18 @@ export class ExploreBoardComponent implements OnInit {
     };
     this.http.post(this.ADD_COMMENT, card, requestOptions).subscribe(res => {
     })
+  }
+
+  showCommentsButton(card: ICard) {
+    const options = {
+      cancelText: 'Anuluj',
+      confirmText: 'Potwierdź',
+      card: card
+    };
+
+    this.dialogService2.open(options);
+    this.dialogService2.confirmed().subscribe(confirmed => {
+      //tylko zamykamy nic nie robimy ¯\_(ツ)_/¯
+    });
   }
 }
