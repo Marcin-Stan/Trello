@@ -29,6 +29,7 @@ export class ExploreBoardComponent implements OnInit {
   readonly SET_CARD_ARCHIVED = 'https://pl-paw-2021.herokuapp.com/card/archived';
   readonly SET_CARD_LABEL = 'https://pl-paw-2021.herokuapp.com/card/changeLabel';
   readonly GET_LABELS = 'https://pl-paw-2021.herokuapp.com/label/getAllByBoard';
+  readonly ADD_COMMENT = 'https://pl-paw-2021.herokuapp.com/comment/add';
 
   lists: IList[];
   listsWithCards: IListWithCards[] = [];
@@ -336,11 +337,22 @@ export class ExploreBoardComponent implements OnInit {
     this.dialogService.open(options);
     this.dialogService.confirmed().subscribe(confirmed => {
       if (!confirmed.isEmpty) {
-        console.log(confirmed);
-        //
-        //TUTAJ WYWOŁANIE METODY DO ZAPISANIA KOMENTARZA
-        //
+        this.addCommentToCard(card,confirmed);
       }
     });
+  }
+
+  addCommentToCard(card:ICard,text:string){
+    const headers = new HttpHeaders()
+      .set("authorization", this.userWithBoardAndToken.userWithToken.token);
+    let params = new HttpParams();
+    params = params.set('idUser', this.userWithBoardAndToken.userWithToken.user.id.toString());
+    params = params.set('text', text);
+    const requestOptions = {
+      headers: headers,
+      params: params
+    };
+    this.http.post(this.ADD_COMMENT, card, requestOptions).subscribe(res => {
+    })
   }
 }
